@@ -108,6 +108,7 @@ const AddStaff = () => {
             <select
               name="department_id"
               id=""
+              className="form-select"
               value={input.department_id}
               onChange={inputHandler}
             >

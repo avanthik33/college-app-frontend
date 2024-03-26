@@ -94,6 +94,7 @@ const AddHod = () => {
               id="department"
               name="department_id"
               value={input.department_id}
+              className="form-select"
               onChange={inputHandler}
             >
               <option value=""></option>
