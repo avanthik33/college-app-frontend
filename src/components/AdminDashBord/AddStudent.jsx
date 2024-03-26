@@ -4,6 +4,7 @@ import axios from "axios";
 
 const AddStudent = () => {
   const [departments, setDepartments] = useState([]);
+  const [uniqueDep, setUniqueDep] = useState([]);
   const [courses, setCourses] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [input, setInput] = useState({
@@ -21,20 +22,22 @@ const AddStudent = () => {
   useEffect(() => {
     fetchCourses();
   }, []);
-
   const fetchCourses = () => {
+    axios.get("http://localhost:3001/dep/viewAll").then((response) => {
+      setDepartments(response.data.depData);
+      setUniqueDep([
+        ...new Set(
+          response.data.depData.map((department) => department.department)
+        ),
+      ]);
+    });
+
     axios
       .get("http://localhost:3001/course/viewall")
       .then((response) => {
         const data = response.data;
         if (data.status === "success") {
           setCourses(data.Courses);
-          const uniqueDepartments = [
-            ...new Set(
-              data.Courses.map((course) => course.department_id.department)
-            ),
-          ];
-          setDepartments(uniqueDepartments);
         } else {
           console.error("Failed to fetch courses");
         }
@@ -58,7 +61,6 @@ const AddStudent = () => {
         alert(response.data.message);
       });
   };
-
   return (
     <div>
       <NavBar user="/staffDash" />
@@ -120,7 +122,7 @@ const AddStudent = () => {
               onChange={departmentChangeHandler}
             >
               <option value="">Select Department</option>
-              {departments.map((department, index) => (
+              {uniqueDep.map((department, index) => (
                 <option key={index} value={department}>
                   {department}
                 </option>
