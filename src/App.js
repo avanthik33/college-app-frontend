@@ -10,6 +10,7 @@ import AddStudent from "./components/AdminDashBord/AddStudent";
 import AddStaff from "./components/HodDashBord/AddStaff";
 import StaffDash from "./components/StaffDashBord/StaffDash";
 import AddSubject from "./components/HodDashBord/AddSubject";
+import SubjectAllocation from "./components/HodDashBord/SubjectAllocation";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/addStaff" element={<AddStaff />} />
           <Route path="/staffDash" element={<StaffDash />} />
           <Route path="/addSub" element={<AddSubject />} />
+          <Route path="/subAllocation" element={<SubjectAllocation />} />
         </Routes>
       </BrowserRouter>
     </div>

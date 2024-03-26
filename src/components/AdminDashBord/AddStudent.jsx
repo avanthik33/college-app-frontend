@@ -119,6 +119,7 @@ const AddStudent = () => {
             <select
               id="department"
               value={selectedDepartment}
+              className="form-select"
               onChange={departmentChangeHandler}
             >
               <option value="">Select Department</option>
