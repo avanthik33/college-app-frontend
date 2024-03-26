@@ -1,16 +1,16 @@
 import React from "react";
-import NavBar from "../NavBar";
+import AdminNavBar from "../NavBar";
 import AdminCards from "../AdminDashBord/AdminCards";
 
-const HodDash = () => {
+const StaffDash = () => {
   return (
     <div>
-      <NavBar user="/hodDash" />
+      <AdminNavBar user="/staffDash" />
       <div className="container">
         <div className="row">
           <div className="row g-3">
             <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
-              <AdminCards heading="Add staff" link="/addStaff" />
+              <AdminCards heading="Add Student" link="/addStudent" />
             </div>
           </div>
         </div>
@@ -19,4 +19,4 @@ const HodDash = () => {
   );
 };
 
-export default HodDash;
+export default StaffDash;

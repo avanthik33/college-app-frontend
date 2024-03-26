@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const AdminNavBar = (props) => {
+  const handleLogout = () => {
+    localStorage.clear();
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -23,8 +26,17 @@ const AdminNavBar = (props) => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to={props.user}>
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to={props.user}
+                >
                   Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/" onClick={handleLogout} >
+                  LogOut
                 </Link>
               </li>
             </ul>

@@ -6,7 +6,7 @@ const AdminCards = (props) => {
     <div>
       <div className="card">
         <div className="card-body">
-          <h5 className="card-title">{props.dep}</h5>
+          <h5 className="card-title">{props.heading}</h5>
           <Link to={props.link} className="btn btn-primary">
             Navigate
           </Link>

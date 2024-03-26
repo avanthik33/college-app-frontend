@@ -1,68 +1,57 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../NavBar";
+import AdminNavBar from "../NavBar";
 import axios from "axios";
 
-const AddStudent = () => {
-  const [departments, setDepartments] = useState([]);
-  const [courses, setCourses] = useState([]);
-  const [selectedDepartment, setSelectedDepartment] = useState("");
+const AddStaff = () => {
+  const [department, setDepartment] = useState([]);
   const [input, setInput] = useState({
     firstName: "",
     lastName: "",
-    dob: "",
     gender: "",
-    course_id: "",
-    email: "",
+    dob: "",
+    department_id: "",
+    qualification: "",
     address: "",
-    phoneNo: "",
+    email: "",
+    phone: "",
     password: "",
   });
-
   useEffect(() => {
-    fetchCourses();
+    fetch("http://localhost:3001/dep/viewAll")
+      .then((response) => response.json())
+      .then((data) => {
+        setDepartment(data.depData);
+      });
   }, []);
-
-  const fetchCourses = () => {
-    axios
-      .get("http://localhost:3001/course/viewall")
-      .then((response) => {
-        const data = response.data;
-        if (data.status === "success") {
-          setCourses(data.Courses);
-          const uniqueDepartments = [
-            ...new Set(
-              data.Courses.map((course) => course.department_id.department)
-            ),
-          ];
-          setDepartments(uniqueDepartments);
-        } else {
-          console.error("Failed to fetch courses");
-        }
-      })
-      .catch((error) => console.error("Error fetching courses:", error));
+  const inputHandler = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
   };
-
-  const inputHandler = (event) => {
-    setInput({ ...input, [event.target.name]: event.target.value });
-  };
-
-  const departmentChangeHandler = (event) => {
-    setSelectedDepartment(event.target.value);
-    setInput({ ...input, course_id: "" });
-  };
-
   const submitHandler = () => {
     axios
-      .post("http://localhost:3001/student/addStudent", input)
+      .post("http://localhost:3001/staff/addStaff", input)
       .then((response) => {
         alert(response.data.message);
+        setInput({
+          firstName: "",
+          lastName: "",
+          gender: "",
+          dob: "",
+          department_id: "",
+          qualification: "",
+          address: "",
+          email: "",
+          phone: "",
+          password: "",
+        });
       });
   };
-
   return (
     <div>
-      <NavBar user="/staffDash" />
+      <AdminNavBar user="/hodDash" />
       <div className="container">
+        <div className="row">
+          <h1>ADD STAFF</h1>
+        </div>
         <div className="row g-3">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <label htmlFor="" className="form-label">
@@ -71,8 +60,8 @@ const AddStudent = () => {
             <input
               type="text"
               className="form-control"
-              name="firstName"
               value={input.firstName}
+              name="firstName"
               onChange={inputHandler}
             />
           </div>
@@ -90,7 +79,19 @@ const AddStudent = () => {
           </div>
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <label htmlFor="" className="form-label">
-              DOB
+              Gender
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              value={input.gender}
+              name="gender"
+              onChange={inputHandler}
+            />
+          </div>
+          <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <label htmlFor="" className="form-label">
+              Dob
             </label>
             <input
               type="date"
@@ -102,64 +103,33 @@ const AddStudent = () => {
           </div>
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <label htmlFor="" className="form-label">
-              gender
+              Department
+            </label>
+            <select
+              name="department_id"
+              id=""
+              value={input.department_id}
+              onChange={inputHandler}
+            >
+              <option value="" className="control"></option>
+              {department.map((value, index) => {
+                return (
+                  <option key={value._id} value={value._id} className="control">
+                    {value.department}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <label htmlFor="" className="form-label">
+              Qualification
             </label>
             <input
               type="text"
               className="form-control"
-              value={input.gender}
-              name="gender"
-              onChange={inputHandler}
-            />
-          </div>
-          <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-            <label htmlFor="department">Choose a department:</label>
-            <select
-              id="department"
-              value={selectedDepartment}
-              onChange={departmentChangeHandler}
-            >
-              <option value="">Select Department</option>
-              {departments.map((department, index) => (
-                <option key={index} value={department}>
-                  {department}
-                </option>
-              ))}
-            </select>
-
-            {selectedDepartment && (
-              <div>
-                <label htmlFor="course">Choose a course:</label>
-                <select
-                  id="course"
-                  name="course_id"
-                  value={input.course_id}
-                  onChange={inputHandler}
-                >
-                  <option value="">Select Course</option>
-                  {courses
-                    .filter(
-                      (course) =>
-                        course.department_id.department === selectedDepartment
-                    )
-                    .map((course) => (
-                      <option key={course._id} value={course._id}>
-                        {course.course}
-                      </option>
-                    ))}
-                </select>
-              </div>
-            )}
-          </div>
-          <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-            <label htmlFor="" className="form-label">
-              Email
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              value={input.email}
-              name="email"
+              value={input.qualification}
+              name="qualification"
               onChange={inputHandler}
             />
           </div>
@@ -177,13 +147,25 @@ const AddStudent = () => {
           </div>
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <label htmlFor="" className="form-label">
-              Phone No
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              value={input.email}
+              name="email"
+              onChange={inputHandler}
+            />
+          </div>
+          <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <label htmlFor="" className="form-label">
+              Phone
             </label>
             <input
               type="number"
               className="form-control"
-              value={input.phoneNo}
-              name="phoneNo"
+              value={input.phone}
+              name="phone"
               onChange={inputHandler}
             />
           </div>
@@ -201,7 +183,7 @@ const AddStudent = () => {
           </div>
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <button className="btn btn-success" onClick={submitHandler}>
-              Add Student
+              Add Staff
             </button>
           </div>
         </div>
@@ -210,4 +192,4 @@ const AddStudent = () => {
   );
 };
 
-export default AddStudent;
+export default AddStaff;

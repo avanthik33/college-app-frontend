@@ -22,6 +22,9 @@ const SignIn = () => {
       } else if (response.data.message === "Hod login success") {
         sessionStorage.setItem("hodId", response.data.data._id);
         navigate("/hodDash");
+      } else if (response.data.message === "Staff login success") {
+        sessionStorage.setItem("staffId", response.data.data._id);
+        navigate("/staffDash");
       } else {
         alert(response.data.message);
         setInput({
