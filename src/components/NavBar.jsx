@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const AdminNavBar = (props) => {
-  const handleLogout = () => {
-    localStorage.clear();
-  };
+  const handleLogout=()=>{
+    sessionStorage.clear()
+  }
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">

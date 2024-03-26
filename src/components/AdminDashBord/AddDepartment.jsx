@@ -11,14 +11,19 @@ const AddDepartment = () => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
   const submitHandle = () => {
-    axios.post("http://localhost:3001/dep/addDep", input).then((resp) => {
-      alert(resp.data.message);
-      setInput({
-        department: "",
-        description: "",
+    axios
+      .post("http://localhost:3001/dep/addDep", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
+      .then((resp) => {
+        alert(resp.data.message);
+        setInput({
+          department: "",
+          description: "",
+        });
       });
-    });
   };
+  
   return (
     <div>
       <NavBar user="/adminDash" />
