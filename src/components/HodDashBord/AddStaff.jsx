@@ -3,9 +3,31 @@ import AdminNavBar from "../NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+function parseExpiryTime(expiryTime) {
+  const numericPart = parseInt(expiryTime); // Extract numeric part
+  const unit = expiryTime.replace(/\d/g, ""); // Extract unit part (e.g., "d" for days)
+
+  // Define conversion factors for different units
+  const conversionFactors = {
+    d: 24 * 60 * 60 * 1000, // 1 day in milliseconds
+    h: 60 * 60 * 1000, // 1 hour in milliseconds
+    m: 60 * 1000, // 1 minute in milliseconds
+    s: 1000, // 1 second in milliseconds
+    // Add more units if needed
+  };
+
+  // If the unit is known, convert and return
+  if (unit in conversionFactors) {
+    return numericPart * conversionFactors[unit];
+  } else {
+    throw new Error("Unsupported unit: " + unit);
+  }
+}
+
 const AddStaff = () => {
   const [department, setDepartment] = useState([]);
   const [input, setInput] = useState({
+    idNumber:"",
     firstName: "",
     lastName: "",
     gender: "",
@@ -37,6 +59,7 @@ const AddStaff = () => {
       .then((response) => {
         alert(response.data.message);
         setInput({
+          idNumber:"",
           firstName: "",
           lastName: "",
           gender: "",
@@ -54,13 +77,21 @@ const AddStaff = () => {
   const token = sessionStorage.getItem("token");
   const expiryTime = sessionStorage.getItem("expiryTime");
 
+  const presentTime = new Date().getTime();
+
   const handleTokenExpire = () => {
     if (token && expiryTime) {
-      const currentTime = new Date().getTime();
-      if (currentTime > parseInt(expiryTime)) {
+      const expireTime = parseExpiryTime(expiryTime);
+      const checkTime = presentTime + expireTime;
+      if (Date.now() >= checkTime) {
+        console.log("Token Expired. Redirecting...");
         sessionStorage.clear();
         navigate("/");
+      } else {
+        console.log("Token is still valid.");
       }
+    } else {
+      console.log("No token and expiry time available.");
     }
   };
 
@@ -76,6 +107,18 @@ const AddStaff = () => {
           <h1>ADD STAFF</h1>
         </div>
         <div className="row g-3">
+          <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <label htmlFor="" className="form-label">
+              ID Number
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              value={input.idNumber}
+              name="idNumber"
+              onChange={inputHandler}
+            />
+          </div>
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <label htmlFor="" className="form-label">
               First Name
