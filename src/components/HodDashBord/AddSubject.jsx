@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AdminNavBar from "../NavBar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddSubject = () => {
   const [courses, setCourses] = useState([]);
@@ -9,7 +10,9 @@ const AddSubject = () => {
     subject: "",
   });
   useEffect(() => {
-    fetch("http://localhost:3001/course/viewall")
+    fetch("http://localhost:3001/course/viewall", {
+      headers: { token: sessionStorage.getItem("token") },
+    })
       .then((response) => response.json())
       .then((data) => {
         setCourses(data.Courses);
@@ -20,7 +23,9 @@ const AddSubject = () => {
   };
   const handleSubmit = () => {
     axios
-      .post("http://localhost:3001/subject/addSub", input)
+      .post("http://localhost:3001/subject/addSub", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((response) => {
         alert(response.data.message);
         setInput({
@@ -29,6 +34,25 @@ const AddSubject = () => {
         });
       });
   };
+
+  const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
+  const expiryTime = sessionStorage.getItem("expiryTime");
+
+  const handleTokenExpire = () => {
+    if (token && expiryTime) {
+      const currentTime = new Date().getTime();
+      if (currentTime > parseInt(expiryTime)) {
+        sessionStorage.clear();
+        navigate("/");
+      }
+    }
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(handleTokenExpire, 60000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <div>
       <AdminNavBar user="/hodDash" />
