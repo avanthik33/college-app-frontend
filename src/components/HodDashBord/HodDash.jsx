@@ -54,7 +54,7 @@ const HodDash = () => {
 
   return (
     <div>
-      <NavBar user="/hodDash" />
+      <NavBar user="/hodDash" profile="/hodProfile" />
       <div className="container">
         <div className="row">
           <div className="row g-3">
@@ -67,6 +67,7 @@ const HodDash = () => {
             <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
               <AdminCards heading="Allocate Subject" link="/subAllocation" />
             </div>
+          
           </div>
         </div>
       </div>

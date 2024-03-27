@@ -41,6 +41,10 @@ const AdminProfile = () => {
       })
       .then((response) => {
         setData(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   };
 
@@ -64,6 +68,10 @@ const AdminProfile = () => {
           password: "",
         });
         fetchData(id);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   };
 

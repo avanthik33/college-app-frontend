@@ -26,22 +26,33 @@ function parseExpiryTime(expiryTime) {
 
 const AddSubject = () => {
   const [courses, setCourses] = useState([]);
+  const [hodData, setHodData] = useState("");
   const [input, setInput] = useState({
     course_id: "",
     subject: "",
   });
+  let departmentName = "";
   useEffect(() => {
     fetch("http://localhost:3001/course/viewall", {
       headers: { token: sessionStorage.getItem("token") },
     })
       .then((response) => response.json())
       .then((data) => {
-        setCourses(data.Courses);
+        const filterdCourses = data.Courses.filter(
+          (course) => course.department_id.department === departmentName
+        );
+        setCourses(filterdCourses);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   }, []);
+
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = () => {
     axios
       .post("http://localhost:3001/subject/addSub", input, {
@@ -53,13 +64,16 @@ const AddSubject = () => {
           course_id: "",
           subject: "",
         });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   };
 
   const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
   const expiryTime = sessionStorage.getItem("expiryTime");
-
   const presentTime = new Date().getTime();
 
   const handleTokenExpire = () => {
@@ -82,9 +96,28 @@ const AddSubject = () => {
     const intervalId = setInterval(handleTokenExpire, 60000);
     return () => clearInterval(intervalId);
   }, []);
+
+  const fetchHodData = () => {
+    axios
+      .get(`http://localhost:3001/hod/view/${sessionStorage.getItem("id")}`, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
+      .then((response) => {
+        departmentName = response.data.data.department_id.department;
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Request Failed. Please try agin later");
+      });
+  };
+
+  useEffect(() => {
+    fetchHodData();
+  }, []);
+
   return (
     <div>
-      <AdminNavBar user="/hodDash" />
+      <AdminNavBar user="/hodDash" profile="/hodProfile" />
       <div className="container">
         <div className="row g-3">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">

@@ -47,7 +47,7 @@ const AddHod = () => {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
-        alert(response.data.status);
+        alert(response.data.message);
         setInput({
           idNumber: "",
           firstName: "",
@@ -59,6 +59,10 @@ const AddHod = () => {
           phoneNo: "",
           password: "",
         });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   };
   useEffect(() => {
@@ -114,7 +118,7 @@ const AddHod = () => {
               ID Number
             </label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               name="idNumber"
               onChange={inputHandler}

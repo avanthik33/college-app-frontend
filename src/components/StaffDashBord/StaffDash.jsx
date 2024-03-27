@@ -54,7 +54,7 @@ const StaffDash = () => {
   }, []);
   return (
     <div>
-      <AdminNavBar user="/staffDash" />
+      <AdminNavBar user="/staffDash" profile="/staffProfile" />
       <div className="container">
         <div className="row">
           <div className="row g-3">

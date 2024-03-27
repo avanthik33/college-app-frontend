@@ -50,6 +50,10 @@ const SubjectAllocation = () => {
           fetchStaff(departmentName);
           fetchSubject(departmentName);
         }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   };
 
@@ -63,6 +67,10 @@ const SubjectAllocation = () => {
           (staff) => staff.department_id.department === departmentName
         );
         setStaffs(departmentStaff);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   };
   const fetchSubject = (selectedDepartment) => {
@@ -76,6 +84,10 @@ const SubjectAllocation = () => {
             subject.course_id.department_id.department === selectedDepartment
         );
         setSubject(selectedSubject);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   };
 
@@ -94,6 +106,10 @@ const SubjectAllocation = () => {
           staff_id: "",
           subject_id: "",
         });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   };
 
@@ -125,7 +141,7 @@ const SubjectAllocation = () => {
   }, []);
   return (
     <div>
-      <AdminNavBar user="/hodDash" />
+      <AdminNavBar user="/hodDash" profile="/hodProfile" />
       <div className="container">
         <div className="row g-3">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
