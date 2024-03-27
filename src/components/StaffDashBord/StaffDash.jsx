@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AdminNavBar from "../NavBar";
 import AdminCards from "../AdminDashBord/AdminCards";
+import { useNavigate } from "react-router-dom";
 
 const StaffDash = () => {
+  const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
+  const expiryTime = sessionStorage.getItem("expiryTime");
+
+  const handleTokenExpire = () => {
+    if (token && expiryTime) {
+      const currentTime = new Date().getTime();
+      if (currentTime > parseInt(expiryTime)) {
+        sessionStorage.clear();
+        navigate("/");
+      }
+    }
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(handleTokenExpire, 60000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <div>
       <AdminNavBar user="/staffDash" />

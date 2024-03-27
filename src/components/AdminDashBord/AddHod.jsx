@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../NavBar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddHod = () => {
   const [departments, setDepartments] = useState([]);
@@ -18,22 +19,28 @@ const AddHod = () => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
   const submitHandler = () => {
-    axios.post("http://localhost:3001/hod/addHod", input).then((response) => {
-      alert(response.data.status);
-      setInput({
-        firstName: "",
-        lastName: "",
-        gender: "",
-        department_id: "",
-        qualification: "",
-        email: "",
-        phoneNo: "",
-        password: "",
+    axios
+      .post("http://localhost:3001/hod/addHod", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
+      .then((response) => {
+        alert(response.data.status);
+        setInput({
+          firstName: "",
+          lastName: "",
+          gender: "",
+          department_id: "",
+          qualification: "",
+          email: "",
+          phoneNo: "",
+          password: "",
+        });
       });
-    });
   };
   useEffect(() => {
-    fetch("http://localhost:3001/dep/viewAll")
+    fetch("http://localhost:3001/dep/viewAll", {
+      headers: { token: sessionStorage.getItem("token") },
+    })
       .then((response) => response.json())
       .then((data) => {
         if (data.status === "success") {
@@ -45,9 +52,27 @@ const AddHod = () => {
       .catch((error) => console.error("Error fetching departments:", error));
   }, []);
 
+  const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
+  const expiryTime = sessionStorage.getItem("expiryTime");
+
+  const handleTokenExpire = () => {
+    if (token && expiryTime) {
+      const currentTime = new Date().getTime();
+      if (currentTime > parseInt(expiryTime)) {
+        sessionStorage.clear();
+        navigate("/");
+      }
+    }
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(handleTokenExpire, 60000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <div>
-      <NavBar user="/adminDash" />
+      <NavBar user="/adminDash" profile="/adminProfile" />
       <div className="container">
         <div className="row g-3">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">

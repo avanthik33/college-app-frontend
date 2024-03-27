@@ -18,18 +18,22 @@ const SignIn = () => {
     axios.post("http://localhost:3001/admin/signin", input).then((response) => {
       if (response.data.message === "Student login success") {
         sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("expiryTime", response.data.expiryTime);
         sessionStorage.setItem("studentId", response.data.data._id);
         navigate("/studentDash");
       } else if (response.data.message === "Admin login success") {
         sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("expiryTime", response.data.expiryTime);
         sessionStorage.setItem("adminId", response.data.data._id);
         navigate("/adminDash");
       } else if (response.data.message === "Hod login success") {
         sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("expiryTime", response.data.expiryTime);
         sessionStorage.setItem("hodId", response.data.data._id);
         navigate("/hodDash");
       } else if (response.data.message === "Staff login success") {
         sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("expiryTime", response.data.expiryTime);
         sessionStorage.setItem("staffId", response.data.data._id);
         navigate("/staffDash");
       } else {
@@ -38,11 +42,21 @@ const SignIn = () => {
       }
     });
   };
-  const d=sessionStorage.getItem("token")
-  console.log(d)
   return (
     <div className="signin-container">
-      <div className="container">
+      <div className="container-flex">
+        <div className="row">
+          <div className="banner">
+            <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+              <h1 className="signinBannerMainHeading">
+                CAMPUS AUTOMATION SYSTEM
+              </h1>
+              <h4 className="signinBannerSecondaryHeading">
+                ABCD COLLEGE KERALA
+              </h4>
+            </div>
+          </div>
+        </div>
         <div className="row">
           <h1 className="signin">SIGNIN</h1>
         </div>
@@ -66,6 +80,7 @@ const SignIn = () => {
                   name="email"
                   onChange={inputHandle}
                   placeholder="Email"
+                  autoFocus
                   required
                 />
               </div>

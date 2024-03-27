@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../NavBar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddStudent = () => {
   const [departments, setDepartments] = useState([]);
@@ -23,17 +24,23 @@ const AddStudent = () => {
     fetchCourses();
   }, []);
   const fetchCourses = () => {
-    axios.get("http://localhost:3001/dep/viewAll").then((response) => {
-      setDepartments(response.data.depData);
-      setUniqueDep([
-        ...new Set(
-          response.data.depData.map((department) => department.department)
-        ),
-      ]);
-    });
+    axios
+      .get("http://localhost:3001/dep/viewAll", {
+        headers: { token: sessionStorage.getItem("token") },
+      })
+      .then((response) => {
+        setDepartments(response.data.depData);
+        setUniqueDep([
+          ...new Set(
+            response.data.depData.map((department) => department.department)
+          ),
+        ]);
+      });
 
     axios
-      .get("http://localhost:3001/course/viewall")
+      .get("http://localhost:3001/course/viewall", {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((response) => {
         const data = response.data;
         if (data.status === "success") {
@@ -56,14 +63,35 @@ const AddStudent = () => {
 
   const submitHandler = () => {
     axios
-      .post("http://localhost:3001/student/addStudent", input)
+      .post("http://localhost:3001/student/addStudent", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((response) => {
         alert(response.data.message);
       });
   };
+
+  const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
+  const expiryTime = sessionStorage.getItem("expiryTime");
+
+  const handleTokenExpire = () => {
+    if (token && expiryTime) {
+      const currentTime = new Date().getTime();
+      if (currentTime > parseInt(expiryTime)) {
+        sessionStorage.clear();
+        navigate("/");
+      }
+    }
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(handleTokenExpire, 60000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <div>
-      <NavBar user="/staffDash" />
+      <NavBar user="/staffDash" profile="/adminProfile" />
       <div className="container">
         <div className="row g-3">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">

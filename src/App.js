@@ -11,6 +11,7 @@ import AddStaff from "./components/HodDashBord/AddStaff";
 import StaffDash from "./components/StaffDashBord/StaffDash";
 import AddSubject from "./components/HodDashBord/AddSubject";
 import SubjectAllocation from "./components/HodDashBord/SubjectAllocation";
+import AdminProfile from "./components/AdminDashBord/AdminProfile";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/staffDash" element={<StaffDash />} />
           <Route path="/addSub" element={<AddSubject />} />
           <Route path="/subAllocation" element={<SubjectAllocation />} />
+          <Route path="/adminProfile" element={<AdminProfile />} />
         </Routes>
       </BrowserRouter>
     </div>

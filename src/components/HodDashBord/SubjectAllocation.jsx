@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AdminNavBar from "../NavBar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SubjectAllocation = () => {
   const [input, setInput] = useState({
@@ -17,32 +18,44 @@ const SubjectAllocation = () => {
   }, []);
 
   const fetchDepartement = () => {
-    axios.get(`http://localhost:3001/hod/view/${hodId}`).then((response) => {
-      const departmentName = response.data.data?.department_id?.department;
-      if (departmentName) {
-        setSelectedDep(departmentName);
-        fetchStaff(departmentName);
-        fetchSubject(departmentName);
-      }
-    });
+    axios
+      .get(`http://localhost:3001/hod/view/${hodId}`, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
+      .then((response) => {
+        const departmentName = response.data.data?.department_id?.department;
+        if (departmentName) {
+          setSelectedDep(departmentName);
+          fetchStaff(departmentName);
+          fetchSubject(departmentName);
+        }
+      });
   };
 
   const fetchStaff = (departmentName) => {
-    axios.get("http://localhost:3001/staff/viewall").then((response) => {
-      const departmentStaff = response.data.data.filter(
-        (staff) => staff.department_id.department === departmentName
-      );
-      setStaffs(departmentStaff);
-    });
+    axios
+      .get("http://localhost:3001/staff/viewall", {
+        headers: { token: sessionStorage.getItem("token") },
+      })
+      .then((response) => {
+        const departmentStaff = response.data.data.filter(
+          (staff) => staff.department_id.department === departmentName
+        );
+        setStaffs(departmentStaff);
+      });
   };
   const fetchSubject = (selectedDepartment) => {
-    axios.get("http://localhost:3001/subject/viewall").then((response) => {
-      const selectedSubject = response.data.data.filter(
-        (subject) =>
-          subject.course_id.department_id.department === selectedDepartment
-      );
-      setSubject(selectedSubject);
-    });
+    axios
+      .get("http://localhost:3001/subject/viewall", {
+        headers: { token: sessionStorage.getItem("token") },
+      })
+      .then((response) => {
+        const selectedSubject = response.data.data.filter(
+          (subject) =>
+            subject.course_id.department_id.department === selectedDepartment
+        );
+        setSubject(selectedSubject);
+      });
   };
 
   const handleInput = (e) => {
@@ -51,7 +64,9 @@ const SubjectAllocation = () => {
 
   const handleSubmit = () => {
     axios
-      .post("http://localhost:3001/subAllocation/allocate", input)
+      .post("http://localhost:3001/subAllocation/allocate", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((response) => {
         alert(response.data.message);
         setInput({
@@ -60,6 +75,25 @@ const SubjectAllocation = () => {
         });
       });
   };
+
+  const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
+  const expiryTime = sessionStorage.getItem("expiryTime");
+
+  const handleTokenExpire = () => {
+    if (token && expiryTime) {
+      const currentTime = new Date().getTime();
+      if (currentTime > parseInt(expiryTime)) {
+        sessionStorage.clear();
+        navigate("/");
+      }
+    }
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(handleTokenExpire, 60000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <div>
       <AdminNavBar user="/hodDash" />

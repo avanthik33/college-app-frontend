@@ -2,16 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const AdminNavBar = (props) => {
-  const handleLogout=()=>{
-    sessionStorage.clear()
-  }
+  const handleLogout = () => {
+    sessionStorage.clear();
+  };
+  
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <Link className="navbar-brand" href="#">
-            Navbar
-          </Link>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container">
+          <h2 className="navbar-brand">ABC COLLEGE</h2>
           <button
             className="navbar-toggler"
             type="button"
@@ -23,9 +22,12 @@ const AdminNavBar = (props) => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
             <ul className="navbar-nav">
-              <li className="nav-item">
+              <li className="nav-item" >
                 <Link
                   className="nav-link active"
                   aria-current="page"
@@ -35,8 +37,13 @@ const AdminNavBar = (props) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/" onClick={handleLogout} >
-                  LogOut
+                <Link className="nav-link" to={props.profile}>
+                  Profile
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" onClick={handleLogout} to="/">
+                  Logout
                 </Link>
               </li>
             </ul>
