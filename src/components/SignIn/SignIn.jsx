@@ -13,28 +13,29 @@ const SignIn = () => {
   const inputHandle = (event) => {
     setInput({ ...input, [event.target.name]: event.target.value });
   };
+  
 
   const submitHandle = () => {
     axios.post("http://localhost:3001/admin/signin", input).then((response) => {
       if (response.data.message === "Student login success") {
         sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("expiryTime", response.data.expiryTime);
-        sessionStorage.setItem("studentId", response.data.data._id);
+        sessionStorage.setItem("id", response.data.data._id);
         navigate("/studentDash");
       } else if (response.data.message === "Admin login success") {
         sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("expiryTime", response.data.expiryTime);
-        sessionStorage.setItem("adminId", response.data.data._id);
+        sessionStorage.setItem("id", response.data.data._id);
         navigate("/adminDash");
       } else if (response.data.message === "Hod login success") {
         sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("expiryTime", response.data.expiryTime);
-        sessionStorage.setItem("hodId", response.data.data._id);
+        sessionStorage.setItem("id", response.data.data._id);
         navigate("/hodDash");
       } else if (response.data.message === "Staff login success") {
         sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("expiryTime", response.data.expiryTime);
-        sessionStorage.setItem("staffId", response.data.data._id);
+        sessionStorage.setItem("id", response.data.data._id);
         navigate("/staffDash");
       } else {
         alert(response.data.message);
