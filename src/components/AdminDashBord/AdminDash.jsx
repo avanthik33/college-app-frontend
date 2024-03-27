@@ -3,7 +3,6 @@ import NavBar from "../NavBar";
 import AdminCards from "./AdminCards";
 import { useNavigate } from "react-router-dom";
 
-
 function parseExpiryTime(expiryTime) {
   const numericPart = parseInt(expiryTime); // Extract numeric part
   const unit = expiryTime.replace(/\d/g, ""); // Extract unit part (e.g., "d" for days)
@@ -62,6 +61,9 @@ const AdminDash = () => {
           </div>
           <div className="row g-3 col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
             <AdminCards heading="Add Hod" link="/addHod" />
+          </div>
+          <div className="row g-3 col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+            <AdminCards heading="Add Course" link="/addCourse" />
           </div>
         </div>
       </div>

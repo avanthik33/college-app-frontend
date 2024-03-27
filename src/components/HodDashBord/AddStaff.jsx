@@ -27,7 +27,7 @@ function parseExpiryTime(expiryTime) {
 const AddStaff = () => {
   const [department, setDepartment] = useState([]);
   const [input, setInput] = useState({
-    idNumber:"",
+    idNumber: "",
     firstName: "",
     lastName: "",
     gender: "",
@@ -46,6 +46,10 @@ const AddStaff = () => {
       .then((response) => response.json())
       .then((data) => {
         setDepartment(data.depData);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   }, []);
   const inputHandler = (e) => {
@@ -59,7 +63,7 @@ const AddStaff = () => {
       .then((response) => {
         alert(response.data.message);
         setInput({
-          idNumber:"",
+          idNumber: "",
           firstName: "",
           lastName: "",
           gender: "",
@@ -71,6 +75,10 @@ const AddStaff = () => {
           phone: "",
           password: "",
         });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   };
   const navigate = useNavigate();
@@ -101,7 +109,7 @@ const AddStaff = () => {
   }, []);
   return (
     <div>
-      <AdminNavBar user="/hodDash" />
+      <AdminNavBar user="/hodDash" profile="/hodProfile" />
       <div className="container">
         <div className="row">
           <h1>ADD STAFF</h1>
@@ -112,7 +120,7 @@ const AddStaff = () => {
               ID Number
             </label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               value={input.idNumber}
               name="idNumber"

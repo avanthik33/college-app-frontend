@@ -44,7 +44,11 @@ const AddDepartment = () => {
           department: "",
           description: "",
         });
-      });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
+      });;
   };
 
   const navigate = useNavigate();

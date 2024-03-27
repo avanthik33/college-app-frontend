@@ -103,6 +103,10 @@ const AddStudent = () => {
           phoneNo: "",
           password: "",
         });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Request Failed. Please try again.");
       });
   };
 
