@@ -3,7 +3,6 @@ import AdminNavBar from "../NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 function parseExpiryTime(expiryTime) {
   const numericPart = parseInt(expiryTime); // Extract numeric part
   const unit = expiryTime.replace(/\d/g, ""); // Extract unit part (e.g., "d" for days)
@@ -78,41 +77,43 @@ const AdminProfile = () => {
   useEffect(() => {
     fetchData(id);
   }, []);
-const navigate = useNavigate();
-const token = sessionStorage.getItem("token");
-const expiryTime = sessionStorage.getItem("expiryTime");
+  const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
+  const expiryTime = sessionStorage.getItem("expiryTime");
 
-const presentTime = new Date().getTime();
+  const presentTime = new Date().getTime();
 
-const handleTokenExpire = () => {
-  if (token && expiryTime) {
-    const expireTime = parseExpiryTime(expiryTime);
-    const checkTime = presentTime + expireTime;
-    if (Date.now() >= checkTime) {
-      console.log("Token Expired. Redirecting...");
-      sessionStorage.clear();
-      navigate("/");
+  const handleTokenExpire = () => {
+    if (token && expiryTime) {
+      const expireTime = parseExpiryTime(expiryTime);
+      const checkTime = presentTime + expireTime;
+      if (Date.now() >= checkTime) {
+        console.log("Token Expired. Redirecting...");
+        sessionStorage.clear();
+        navigate("/");
+      } else {
+        console.log("Token is still valid.");
+      }
     } else {
-      console.log("Token is still valid.");
+      console.log("No token and expiry time available.");
     }
-  } else {
-    console.log("No token and expiry time available.");
-  }
-};
+  };
 
-useEffect(() => {
-  const intervalId = setInterval(handleTokenExpire, 60000);
-  return () => clearInterval(intervalId);
-}, []);
+  useEffect(() => {
+    const intervalId = setInterval(handleTokenExpire, 60000);
+    return () => clearInterval(intervalId);
+  }, []);
   return (
     <div>
       <AdminNavBar user="/adminDash" profile="/adminProfile" />
       <div className="container">
         <div className="row g-3">
           <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-            <div className="card h-100"  style={{ width: "650px" }}>
+            <div className="card h-100" style={{ width: "650px" }}>
               <div className="card-header">
-                <h1 className="card-title">Profile</h1>
+                <h1 className="card-title" style={{ fontFamily: "fantasy" }}>
+                  Profile
+                </h1>
               </div>
               <div className="card-body">
                 {data && (
@@ -132,7 +133,9 @@ useEffect(() => {
             {hide && (
               <div className="card">
                 <div className="card-header">
-                  <h1 className="card-title">Update Profile</h1>
+                  <h1 className="card-title" style={{ fontFamily: "fantasy" }}>
+                    Update Profile
+                  </h1>
                 </div>
                 <div className="card-body">
                   {data && (
@@ -162,14 +165,31 @@ useEffect(() => {
             )}
           </div>
         </div>
-        <div className="row g-3">
+        <div className="row g-3 justify-content-center">
           {!hide && (
-            <button className="btn btn-success" onClick={handleHide}>
+            <button
+              className="btn btn-success"
+              style={{
+                fontFamily: "cursive",
+                width: "170px",
+                textAlign: "center",
+              }}
+              onClick={handleHide}
+            >
               Update Profile
             </button>
           )}
           {hide && (
-            <button className="btn btn-primary" onClick={handleUpdateProfile}>
+            <button
+              className="btn btn-primary"
+              style={{
+                fontFamily: "cursive",
+                width: "160px",
+                height: "50px",
+                textAlign: "center",
+              }}
+              onClick={handleUpdateProfile}
+            >
               Save Changes
             </button>
           )}

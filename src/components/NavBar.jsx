@@ -133,14 +133,8 @@ const AdminNavBar = (props) => {
                     </Link>
                     <ul class="dropdown-menu">
                       <li>
-                        <Link class="dropdown-item" to="#">
+                        <Link class="dropdown-item" to="/viewCourse">
                           View Course
-                        </Link>
-                      </li>
-
-                      <li>
-                        <Link class="dropdown-item" to="#">
-                          Update Course
                         </Link>
                       </li>
                     </ul>
