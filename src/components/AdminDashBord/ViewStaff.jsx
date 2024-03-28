@@ -30,6 +30,8 @@ const ViewStaff = () => {
     <div>
       <AdminNavBar profile="/adminProfile" user="/adminDash" />
       <div className="container">
+        <h1 style={{ fontFamily: "fantasy" }}>STAFF'S</h1>
+        <hr />
         <div className="row">
           {length === 0 ? (
             <>
