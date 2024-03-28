@@ -29,6 +29,8 @@ const ViewHod = () => {
     <div>
       <AdminNavBar user="/adminDash" profile="/adminProfile" />
       <div className="container">
+        <h1 style={{ fontFamily: "fantasy" }}>HOD'S</h1>
+        <hr />
         {length === 0 ? (
           <>
             <h1 style={{ fontFamily: "fantasy" }}>NO Data to show</h1>

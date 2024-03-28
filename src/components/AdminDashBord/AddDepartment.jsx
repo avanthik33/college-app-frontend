@@ -82,6 +82,8 @@ const AddDepartment = () => {
     <div>
       <NavBar user="/adminDash" profile="/adminProfile" />
       <div className="container">
+        <h1 style={{ fontFamily: "fantasy" }}>ADD DEPARTMENT</h1>
+        <hr />
         <div className="row g-3 justify-content-center">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <label htmlFor="" className="form-label">
@@ -114,7 +116,6 @@ const AddDepartment = () => {
             <button
               className="btn btn-success"
               style={{
-                width: "160px",
                 fontFamily: "cursive",
                 textAlign: "center",
               }}

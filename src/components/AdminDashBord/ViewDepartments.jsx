@@ -81,6 +81,10 @@ const ViewDepartments = () => {
     <div>
       <AdminNavBar user="/adminDash" profile="/adminProfile" />
       <div className="container">
+        <div className="row">
+          <h1 style={{ fontFamily: "fantasy" }}>DEPARTMENTS</h1>
+          <hr />
+        </div>
         {length === 0 ? (
           <>
             <h1 style={{ fontFamily: "fantasy" }}>NO data to show</h1>
@@ -96,6 +100,7 @@ const ViewDepartments = () => {
                         <label htmlFor="" className="form-label">
                           Department Name
                         </label>
+
                         <input
                           type="text"
                           className="form-control"
@@ -121,7 +126,8 @@ const ViewDepartments = () => {
                       <div className="col col-12 col-sm-12 col-md-12 col-lg 12 col-xl-12 col-xxl-12">
                         <button
                           className="btn btn-success"
-                          onClick={handleUpdateDepartment} // Corrected
+                          style={{ marginBottom: "10px",backgroundColor:"green" }}
+                          onClick={handleUpdateDepartment}
                         >
                           Save Changes
                         </button>
@@ -151,13 +157,23 @@ const ViewDepartments = () => {
                           <td>{value.description}</td>
                           <td>
                             <button
-                              className="btn btn-success"
+                              className="btn btn-success "
+                              style={{
+                                width: "160px",
+                                height: "50px",
+                                marginRight: "10px",
+                              }}
                               onClick={() => handleHide(value._id)} // Corrected
                             >
                               Edit
                             </button>
                             <button
                               className="btn btn-danger"
+                              style={{
+                                width: "160px",
+                                height: "50px",
+                                marginLeft: "10px",
+                              }}
                               onClick={() => handleDeleteDepartment(value._id)} // Corrected
                             >
                               Delete

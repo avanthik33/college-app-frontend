@@ -36,7 +36,8 @@ const SearchStaff = () => {
     <div>
       <AdminNavBar user="/adminDash" profile="/adminProfile" />
       <div className="container">
-        <h3>SEARCH STAFF</h3>
+        <h1 style={{ fontFamily: "fantasy" }}>SEARCH STAFF</h1>
+        <hr />
         <div className="row">
           <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
             <label htmlFor="" className="form-label">
