@@ -32,8 +32,9 @@ const SearchStaff = () => {
   const handleHide = () => {
     setNotHide(true);
   };
-  return <div>
-    <AdminNavBar user="/adminDash" profile="/adminProfile" />
+  return (
+    <div>
+      <AdminNavBar user="/adminDash" profile="/adminProfile" />
       <div className="container">
         <h3>SEARCH STAFF</h3>
         <div className="row">
@@ -81,9 +82,6 @@ const SearchStaff = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-            <h1>DETAILS OF STAFF</h1>
-          </div>
           {notHide && (
             <>
               {!data ? (
@@ -91,60 +89,66 @@ const SearchStaff = () => {
                   <h3>NO DATA FOUND</h3>
                 </>
               ) : (
-                <div className="row">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">Heading</th>
-                        <th scope="col">Details</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Id Number</td>
-                        <td>{data && data.idNumber}</td>
-                      </tr>
-                      <tr>
-                        <td>First Name</td>
-                        <td>{data && data.firstName}</td>
-                      </tr>
-                      <tr>
-                        <td>Last Name</td>
-                        <td>{data && data.lastName}</td>
-                      </tr>
-                      <tr>
-                        <td>Gender</td>
-                        <td>{data && data.gender}</td>
-                      </tr>
-                      <tr>
-                        <td>Department</td>
-                        <td>
-                          {data.department_id
-                            ? data.department_id.department
-                            : "Somthing went wrong may be department deleted"}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Qualification</td>
-                        <td>{data && data.qualification}</td>
-                      </tr>
-                      <tr>
-                        <td>Email</td>
-                        <td>{data && data.email}</td>
-                      </tr>
-                      <tr>
-                        <td>Phone No</td>
-                        <td>{data && data.phone}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <>
+                  <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                    <h1>DETAILS OF STAFF</h1>
+                  </div>
+                  <div className="row">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">Heading</th>
+                          <th scope="col">Details</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Id Number</td>
+                          <td>{data && data.idNumber}</td>
+                        </tr>
+                        <tr>
+                          <td>First Name</td>
+                          <td>{data && data.firstName}</td>
+                        </tr>
+                        <tr>
+                          <td>Last Name</td>
+                          <td>{data && data.lastName}</td>
+                        </tr>
+                        <tr>
+                          <td>Gender</td>
+                          <td>{data && data.gender}</td>
+                        </tr>
+                        <tr>
+                          <td>Department</td>
+                          <td>
+                            {data.department_id
+                              ? data.department_id.department
+                              : "Somthing went wrong may be department deleted"}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Qualification</td>
+                          <td>{data && data.qualification}</td>
+                        </tr>
+                        <tr>
+                          <td>Email</td>
+                          <td>{data && data.email}</td>
+                        </tr>
+                        <tr>
+                          <td>Phone No</td>
+                          <td>{data && data.phone}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </>
               )}
             </>
           )}
         </div>
       </div>
-  </div>;
+    </div>
+  );
 };
 
 export default SearchStaff;

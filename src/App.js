@@ -18,6 +18,7 @@ import ViewHod from "./components/AdminDashBord/ViewHod";
 import SearchHod from "./components/AdminDashBord/SearchHod";
 import ViewStaff from "./components/AdminDashBord/ViewStaff";
 import SearchStaff from "./components/AdminDashBord/SearchStaff";
+import ViewCourse from "./components/AdminDashBord/ViewCourse";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/searchHod" element={<SearchHod />} />
           <Route path="/viewStaff" element={<ViewStaff />} />
           <Route path="/searchStaff" element={<SearchStaff />} />
+          <Route path="/viewCourse" element={<ViewCourse />} />
         </Routes>
       </BrowserRouter>
     </div>

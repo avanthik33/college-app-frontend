@@ -82,7 +82,7 @@ const AddDepartment = () => {
     <div>
       <NavBar user="/adminDash" profile="/adminProfile" />
       <div className="container">
-        <div className="row g-3">
+        <div className="row g-3 justify-content-center">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <label htmlFor="" className="form-label">
               Department
@@ -93,6 +93,8 @@ const AddDepartment = () => {
               name="department"
               value={input.department}
               onChange={inputHandle}
+              required
+              autoFocus
             />
           </div>
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -105,10 +107,19 @@ const AddDepartment = () => {
               name="description"
               value={input.description}
               onChange={inputHandle}
+              required
             />
           </div>
-          <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-            <button className="btn btn-success" onClick={submitHandle}>
+          <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 ">
+            <button
+              className="btn btn-success"
+              style={{
+                width: "160px",
+                fontFamily: "cursive",
+                textAlign: "center",
+              }}
+              onClick={submitHandle}
+            >
               ADD department
             </button>
           </div>
