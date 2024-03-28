@@ -13,6 +13,11 @@ import AddSubject from "./components/HodDashBord/AddSubject";
 import SubjectAllocation from "./components/HodDashBord/SubjectAllocation";
 import AdminProfile from "./components/AdminDashBord/AdminProfile";
 import AddCourse from "./components/AdminDashBord/AddCourse";
+import ViewDepartments from "./components/AdminDashBord/ViewDepartments";
+import ViewHod from "./components/AdminDashBord/ViewHod";
+import SearchHod from "./components/AdminDashBord/SearchHod";
+import ViewStaff from "./components/AdminDashBord/ViewStaff";
+import SearchStaff from "./components/AdminDashBord/SearchStaff";
 
 function App() {
   return (
@@ -32,6 +37,11 @@ function App() {
           <Route path="/subAllocation" element={<SubjectAllocation />} />
           <Route path="/adminProfile" element={<AdminProfile />} />
           <Route path="/addCourse" element={<AddCourse />} />
+          <Route path="/viewDepartments" element={<ViewDepartments />} />
+          <Route path="/viewHod" element={<ViewHod />} />
+          <Route path="/searchHod" element={<SearchHod />} />
+          <Route path="/viewStaff" element={<ViewStaff />} />
+          <Route path="/searchStaff" element={<SearchStaff />} />
         </Routes>
       </BrowserRouter>
     </div>

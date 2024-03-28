@@ -62,9 +62,6 @@ const AdminDash = () => {
           <div className="row g-3 col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
             <AdminCards heading="Add Hod" link="/addHod" />
           </div>
-          <div className="row g-3 col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
-            <AdminCards heading="Add Course" link="/addCourse" />
-          </div>
         </div>
       </div>
     </div>
