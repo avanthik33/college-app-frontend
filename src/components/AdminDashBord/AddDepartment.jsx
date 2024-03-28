@@ -48,7 +48,7 @@ const AddDepartment = () => {
       .catch((error) => {
         console.error("Error:", error);
         alert("Request Failed. Please try again.");
-      });;
+      });
   };
 
   const navigate = useNavigate();
@@ -71,6 +71,7 @@ const AddDepartment = () => {
       console.log("No token and expiry time available.");
     }
   };
+  console.log(sessionStorage.getItem("id") ? "Id is valid" : "id is not valid");
 
   useEffect(() => {
     const intervalId = setInterval(handleTokenExpire, 60000);
