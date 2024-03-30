@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AdminNavBar from "./NavBar";
+import HodNavBar from "./HodNavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -24,18 +24,22 @@ function parseExpiryTime(expiryTime) {
   }
 }
 
-const AdminProfile = () => {
+const HodProfile = () => {
   const [data, setData] = useState([]);
   const [hide, setHide] = useState(false);
   const [input, setInput] = useState({
+    firstName: "",
+    lastName: "",
+    gender: "",
+    qualification: "",
     email: "",
+    phoneNo: "",
     password: "",
   });
   const id = sessionStorage.getItem("id");
-
   const fetchData = (id) => {
     axios
-      .get(`http://localhost:3001/admin/profile/${id}`, {
+      .get(`http://localhost:3001/hod/view/${id}`, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -57,13 +61,22 @@ const AdminProfile = () => {
 
   const handleUpdateProfile = () => {
     axios
-      .put(`http://localhost:3001/admin/update/${id}`, input, {
-        headers: { token: sessionStorage.getItem("token") },
-      })
+      .put(
+        `http://localhost:3001/hod/profile/${id}`,
+        input,
+        {
+          headers: { token: sessionStorage.getItem("token") },
+        }
+      )
       .then((response) => {
         alert(response.data.message);
         setInput({
+          firstName: "",
+          lastName: "",
+          gender: "",
+          qualification: "",
           email: "",
+          phoneNo: "",
           password: "",
         });
         fetchData(id);
@@ -76,13 +89,12 @@ const AdminProfile = () => {
 
   useEffect(() => {
     fetchData(id);
-  }, []);
+  }, [id]);
+
   const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
   const expiryTime = sessionStorage.getItem("expiryTime");
-
   const presentTime = new Date().getTime();
-
   const handleTokenExpire = () => {
     if (token && expiryTime) {
       const expireTime = parseExpiryTime(expiryTime);
@@ -98,14 +110,14 @@ const AdminProfile = () => {
       console.log("No token and expiry time available.");
     }
   };
-
   useEffect(() => {
     const intervalId = setInterval(handleTokenExpire, 60000);
     return () => clearInterval(intervalId);
   }, []);
+
   return (
     <div>
-      <AdminNavBar  />
+      <HodNavBar />
       <div className="container">
         <div
           className="row g-3"
@@ -118,7 +130,7 @@ const AdminProfile = () => {
               className="card"
               style={{
                 width: "650px",
-                height: "300px",
+                height: "900px",
                 backgroundColor: "lightgrey",
               }}
             >
@@ -136,10 +148,25 @@ const AdminProfile = () => {
               >
                 {data && (
                   <div>
-                    <p className="profile-item">
+                    <p className="profile-item" style={{ paddingTop: "30px" }}>
+                      <strong>First Name : </strong> {data.firstName}
+                    </p>
+                    <p className="profile-item" style={{ paddingTop: "30px" }}>
+                      <strong>Last Name : </strong> {data.lastName}
+                    </p>
+                    <p className="profile-item" style={{ paddingTop: "30px" }}>
+                      <strong>Gender : </strong> {data.gender}
+                    </p>
+                    <p className="profile-item" style={{ paddingTop: "30px" }}>
+                      <strong>Qualification : </strong> {data.qualification}
+                    </p>
+                    <p className="profile-item" style={{ paddingTop: "30px" }}>
                       <strong>Email : </strong> {data.email}
                     </p>
-                    <p className="profile-item">
+                    <p className="profile-item" style={{ paddingTop: "30px" }}>
+                      <strong>Phone No : </strong> {data.phoneNo}
+                    </p>
+                    <p className="profile-item" style={{ paddingTop: "30px" }}>
                       <strong>Password : </strong> {data.password}
                     </p>
                   </div>
@@ -153,7 +180,7 @@ const AdminProfile = () => {
                 className="card"
                 style={{
                   width: "650px",
-                  height: "300px",
+                  height: "900px",
                   backgroundColor: "lightgreen",
                 }}
               >
@@ -165,17 +192,62 @@ const AdminProfile = () => {
                 <div className="card-body">
                   {data && (
                     <div>
-                      <label className="form-label">Email</label>
+                      <label className="form-label">Fist Name*</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={input.firstName}
+                        name="firstName"
+                        required
+                        autoFocus
+                        onChange={handleInput}
+                      />
+                      <label className="form-label">Last Name*</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={input.lastName}
+                        name="lastName"
+                        required
+                        onChange={handleInput}
+                      />
+                      <label className="form-label">Gender*</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={input.gender}
+                        name="gender"
+                        required
+                        onChange={handleInput}
+                      />
+                      <label className="form-label">Qualificaion*</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={input.qualification}
+                        name="qualification"
+                        required
+                        onChange={handleInput}
+                      />
+                      <label className="form-label">Email*</label>
                       <input
                         type="email"
                         className="form-control"
                         value={input.email}
                         name="email"
                         required
-                        autoFocus
                         onChange={handleInput}
                       />
-                      <label className="form-label">Password</label>
+                      <label className="form-label">Phone No*</label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        value={input.phoneNo}
+                        name="phoneNo"
+                        required
+                        onChange={handleInput}
+                      />
+                      <label className="form-label">Password*</label>
                       <input
                         type="text"
                         className="form-control"
@@ -226,4 +298,4 @@ const AdminProfile = () => {
   );
 };
 
-export default AdminProfile;
+export default HodProfile;

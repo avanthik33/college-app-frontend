@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import NavBar from "../NavBar";
+import NavBar from "./NavBar";
 import AdminCards from "./AdminCards";
 import { useNavigate } from "react-router-dom";
 
@@ -53,7 +53,7 @@ const AdminDash = () => {
   }, []);
   return (
     <div>
-      <NavBar user="/adminDash" profile="/adminProfile" />
+      <NavBar  />
       <div className="container-fluid">
         <div className="row">
           <div className="row g-3 col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">

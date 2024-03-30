@@ -19,6 +19,17 @@ import SearchHod from "./components/AdminDashBord/SearchHod";
 import ViewStaff from "./components/AdminDashBord/ViewStaff";
 import SearchStaff from "./components/AdminDashBord/SearchStaff";
 import ViewCourse from "./components/AdminDashBord/ViewCourse";
+import SearchStudent from "./components/AdminDashBord/SearchStudent";
+import HodProfile from "./components/HodDashBord/HodProfile";
+import ViewStaffAdmin from "./components/AdminDashBord/ViewStaffAdmin";
+import ViewStaffHod from "./components/HodDashBord/ViewStaffHod";
+import SearchStaffHod from "./components/HodDashBord/SearchStaffHod";
+import SearchStaffAdmin from "./components/AdminDashBord/SearchStaffAdmin";
+import ViewSubjectAllocation from "./components/HodDashBord/ViewSubjectAllocation";
+import ViewCourseAdmin from "./components/AdminDashBord/ViewCourseAdmin";
+import ViewCourseHod from "./components/HodDashBord/ViewCourseHod";
+import StaffProfile from "./components/StaffDashBord/StaffProfile";
+import ViewStudentsStaff from "./components/StaffDashBord/ViewStudentsStaff";
 
 function App() {
   return (
@@ -44,6 +55,17 @@ function App() {
           <Route path="/viewStaff" element={<ViewStaff />} />
           <Route path="/searchStaff" element={<SearchStaff />} />
           <Route path="/viewCourse" element={<ViewCourse />} />
+          <Route path="/searchStudent" element={<SearchStudent />} />
+          <Route path="/hodProfile" element={<HodProfile />} />
+          <Route path="/viewStaffAdmin" element={<ViewStaffAdmin />} />
+          <Route path="/viewStaffHod" element={<ViewStaffHod />} />
+          <Route path="/searchStaffHod" element={<SearchStaffHod />} />
+          <Route path="/searchStaffAdmin" element={<SearchStaffAdmin />} />
+          <Route path="/viewAllocation" element={<ViewSubjectAllocation />} />
+          <Route path="/viewCourseAdmin" element={<ViewCourseAdmin />} />
+          <Route path="/viewCourseHod" element={<ViewCourseHod />} />
+          <Route path="/staffProfile" element={<StaffProfile />} />
+          <Route path="/viewStudentStaff" element={<ViewStudentsStaff />} />
         </Routes>
       </BrowserRouter>
     </div>

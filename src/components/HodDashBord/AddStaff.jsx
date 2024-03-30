@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import AdminNavBar from "../NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import HodNavBar from "./HodNavBar";
 
 function parseExpiryTime(expiryTime) {
   const numericPart = parseInt(expiryTime); // Extract numeric part
@@ -26,6 +26,7 @@ function parseExpiryTime(expiryTime) {
 
 const AddStaff = () => {
   const [department, setDepartment] = useState([]);
+  const [hodDep, setHodDep] = useState(null);
   const [input, setInput] = useState({
     idNumber: "",
     firstName: "",
@@ -39,22 +40,59 @@ const AddStaff = () => {
     phone: "",
     password: "",
   });
+
+  const fetchHodDep = () => {
+    try {
+      axios
+        .get(`http://localhost:3001/hod/view/${sessionStorage.getItem("id")}`, {
+          headers: { token: sessionStorage.getItem("token") },
+        })
+        .then((response) => {
+          setHodDep(response.data.data);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
-    fetch("http://localhost:3001/dep/viewAll", {
-      headers: { token: sessionStorage.getItem("token") },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setDepartment(data.depData);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("Request Failed. Please try again.");
-      });
+    fetchHodDep();
   }, []);
+
+  const fetchDepartment = () => {
+    try {
+      axios
+        .get("http://localhost:3001/dep/viewAll", {
+          headers: { token: sessionStorage.getItem("token") },
+        })
+        .then((response) => {
+          if (
+            hodDep &&
+            hodDep.department_id &&
+            hodDep.department_id.department
+          ) {
+            const check = hodDep.department_id.department;
+            const selectedDepartment = response.data.depData.filter(
+              (dep) => dep.department === check
+            );
+            setDepartment(selectedDepartment);
+          }
+        });
+    } catch (error) {
+      console.error(error);
+      alert("Cannot fetch departments");
+    }
+  };
+
+  useEffect(() => {
+    if (hodDep) {
+      fetchDepartment();
+    }
+  }, [hodDep]);
+
   const inputHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+
   const submitHandler = () => {
     axios
       .post("http://localhost:3001/staff/addStaff", input, {
@@ -81,10 +119,10 @@ const AddStaff = () => {
         alert("Request Failed. Please try again.");
       });
   };
+
   const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
   const expiryTime = sessionStorage.getItem("expiryTime");
-
   const presentTime = new Date().getTime();
 
   const handleTokenExpire = () => {
@@ -109,7 +147,7 @@ const AddStaff = () => {
   }, []);
   return (
     <div>
-      <AdminNavBar user="/hodDash" profile="/hodProfile" />
+      <HodNavBar/>
       <div className="container">
         <div className="row">
           <h1>ADD STAFF</h1>

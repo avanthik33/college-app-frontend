@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import AdminNavBar from "../NavBar";
+import AdminNavBar from "./NavBar";
 
 const SearchStaff = () => {
   const [notHide, setNotHide] = useState(false);
@@ -34,7 +34,6 @@ const SearchStaff = () => {
   };
   return (
     <div>
-      <AdminNavBar user="/adminDash" profile="/adminProfile" />
       <div className="container">
         <h1 style={{ fontFamily: "fantasy" }}>SEARCH STAFF</h1>
         <hr />

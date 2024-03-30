@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import NavBar from "../NavBar";
 import AdminCards from "../AdminDashBord/AdminCards";
 import { useNavigate } from "react-router-dom";
+import HodNavBar from "./HodNavBar";
 
 function parseExpiryTime(expiryTime) {
   const numericPart = parseInt(expiryTime); // Extract numeric part
@@ -54,7 +54,7 @@ const HodDash = () => {
 
   return (
     <div>
-      <NavBar user="/hodDash" profile="/hodProfile" />
+      <HodNavBar/>
       <div className="container">
         <div className="row">
           <div className="row g-3">

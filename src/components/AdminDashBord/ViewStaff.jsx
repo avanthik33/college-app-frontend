@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AdminNavBar from "../NavBar";
+import AdminNavBar from "./NavBar";
+import HodNavBar from "../HodDashBord/HodNavBar";
+import { useLocation } from "react-router-dom";
 
 const ViewStaff = () => {
   const [data, setData] = useState([]);
-  const length = data.length;
 
   const fetchStaffDetails = () => {
     try {
@@ -22,20 +23,22 @@ const ViewStaff = () => {
     }
   };
 
+  const length = data.length;
+
   useEffect(() => {
     fetchStaffDetails();
   }, []);
-
   return (
     <div>
-      <AdminNavBar profile="/adminProfile" user="/adminDash" />
       <div className="container">
         <h1 style={{ fontFamily: "fantasy" }}>STAFF'S</h1>
         <hr />
         <div className="row">
           {length === 0 ? (
             <>
-              <h1 style={{ fontFamily: "fantasy" }}>No data to show</h1>
+              <h1 style={{ fontFamily: "fantasy", color: "red" }}>
+                No data to show
+              </h1>
             </>
           ) : (
             <div className="col-col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -53,7 +56,7 @@ const ViewStaff = () => {
                             Department: {value.department_id.department}
                           </p>
                           <Link to="/searchStaff" class="card-link">
-                            Card link
+                            Search About Staff
                           </Link>
                         </div>
                       </div>
