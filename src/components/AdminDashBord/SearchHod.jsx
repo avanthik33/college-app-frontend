@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AdminNavBar from "../NavBar";
+import AdminNavBar from "./NavBar";
 import axios from "axios";
 
 const SearchHod = () => {
@@ -34,7 +34,7 @@ const SearchHod = () => {
   };
   return (
     <div>
-      <AdminNavBar user="/adminDash" profile="/adminProfile" />
+      <AdminNavBar/>
       <div className="container">
         <h1 style={{ fontFamily: "fantasy" }}>SEARCH HOD</h1>
         <hr />

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import AdminNavBar from "../NavBar";
+import AdminNavBar from "./NavBar";
 
 const ViewDepartments = () => {
   const [data, setData] = useState([]);
@@ -79,7 +79,7 @@ const ViewDepartments = () => {
 
   return (
     <div>
-      <AdminNavBar user="/adminDash" profile="/adminProfile" />
+      <AdminNavBar />
       <div className="container">
         <div className="row">
           <h1 style={{ fontFamily: "fantasy" }}>DEPARTMENTS</h1>
@@ -87,7 +87,9 @@ const ViewDepartments = () => {
         </div>
         {length === 0 ? (
           <>
-            <h1 style={{ fontFamily: "fantasy" }}>NO data to show</h1>
+            <h1 style={{ fontFamily: "fantasy", color: "red" }}>
+              NO data to show
+            </h1>
           </>
         ) : (
           <>
@@ -126,7 +128,10 @@ const ViewDepartments = () => {
                       <div className="col col-12 col-sm-12 col-md-12 col-lg 12 col-xl-12 col-xxl-12">
                         <button
                           className="btn btn-success"
-                          style={{ marginBottom: "10px",backgroundColor:"green" }}
+                          style={{
+                            marginBottom: "10px",
+                            backgroundColor: "green",
+                          }}
                           onClick={handleUpdateDepartment}
                         >
                           Save Changes
@@ -161,6 +166,9 @@ const ViewDepartments = () => {
                               style={{
                                 width: "160px",
                                 height: "50px",
+                                marginLeft: "10px",
+                                marginTop: "10px",
+                                marginBottom: "10px",
                                 marginRight: "10px",
                               }}
                               onClick={() => handleHide(value._id)} // Corrected
@@ -173,6 +181,9 @@ const ViewDepartments = () => {
                                 width: "160px",
                                 height: "50px",
                                 marginLeft: "10px",
+                                marginTop: "10px",
+                                marginBottom: "10px",
+                                marginRight: "10px",
                               }}
                               onClick={() => handleDeleteDepartment(value._id)} // Corrected
                             >

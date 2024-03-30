@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import NavBar from "../NavBar";
+import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 
 function parseExpiryTime(expiryTime) {
@@ -80,7 +80,7 @@ const AddDepartment = () => {
 
   return (
     <div>
-      <NavBar user="/adminDash" profile="/adminProfile" />
+      <NavBar />
       <div className="container">
         <h1 style={{ fontFamily: "fantasy" }}>ADD DEPARTMENT</h1>
         <hr />

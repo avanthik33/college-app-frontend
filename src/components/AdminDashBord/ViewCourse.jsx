@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AdminNavBar from "../NavBar";
+import AdminNavBar from "./NavBar";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -28,13 +28,14 @@ const ViewCourse = () => {
 
   return (
     <div>
-      <AdminNavBar user="/adminDash" profile="/adminProfile" />
       <div className="container">
         <h1 style={{ fontFamily: "fantasy" }}>COURSES</h1>
         <hr />
         {length === 0 ? (
           <>
-            <h1 style={{ fontFamily: "fantasy" }}>NO Data to show</h1>
+            <h1 style={{ fontFamily: "fantasy", color: "red" }}>
+              NO Data to show
+            </h1>
           </>
         ) : (
           <>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../NavBar";
+import NavBar from "./NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -110,7 +110,7 @@ const AddHod = () => {
   }, []);
   return (
     <div>
-      <NavBar user="/adminDash" profile="/adminProfile" />
+      <NavBar />
       <div className="container">
         <h1 style={{ fontFamily: "fantasy" }}>ADD HOD</h1>
         <hr />

@@ -13,7 +13,6 @@ const SignIn = () => {
   const inputHandle = (event) => {
     setInput({ ...input, [event.target.name]: event.target.value });
   };
-  
 
   const submitHandle = () => {
     axios.post("http://localhost:3001/admin/signin", input).then((response) => {

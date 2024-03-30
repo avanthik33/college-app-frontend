@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import AdminNavBar from "../NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import HodNavBar from "./HodNavBar";
 
 function parseExpiryTime(expiryTime) {
   const numericPart = parseInt(expiryTime); // Extract numeric part
@@ -141,7 +141,7 @@ const SubjectAllocation = () => {
   }, []);
   return (
     <div>
-      <AdminNavBar user="/hodDash" profile="/hodProfile" />
+      <HodNavBar/>
       <div className="container">
         <div className="row g-3">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
