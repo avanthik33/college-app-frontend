@@ -30,6 +30,8 @@ import ViewCourseAdmin from "./components/AdminDashBord/ViewCourseAdmin";
 import ViewCourseHod from "./components/HodDashBord/ViewCourseHod";
 import StaffProfile from "./components/StaffDashBord/StaffProfile";
 import ViewStudentsStaff from "./components/StaffDashBord/ViewStudentsStaff";
+import AddAttandance from "./components/StaffDashBord/AddAttandance";
+import ViewAttandance from "./components/StaffDashBord/ViewAttandance";
 
 function App() {
   return (
@@ -66,6 +68,8 @@ function App() {
           <Route path="/viewCourseHod" element={<ViewCourseHod />} />
           <Route path="/staffProfile" element={<StaffProfile />} />
           <Route path="/viewStudentStaff" element={<ViewStudentsStaff />} />
+          <Route path="/addAttandance" element={<AddAttandance />} />
+          <Route path="/viewAttandance" element={<ViewAttandance />} />
         </Routes>
       </BrowserRouter>
     </div>
