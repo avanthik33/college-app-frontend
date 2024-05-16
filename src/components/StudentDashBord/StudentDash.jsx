@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import StudentNav from "./StudentNav";
 
 function parseExpiryTime(expiryTime) {
   const numericPart = parseInt(expiryTime); // Extract numeric part
@@ -50,7 +51,9 @@ const StudentDash = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  return <div>StudentDash</div>;
+  return <div>
+    <StudentNav/>
+  </div>;
 };
 
 export default StudentDash;

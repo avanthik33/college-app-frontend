@@ -78,13 +78,13 @@ const StaffNavBar = () => {
                 </Link>
                 <ul class="dropdown-menu">
                   <li>
-                    <Link class="dropdown-item" to="#">
+                    <Link class="dropdown-item" to="/addAttandance">
                       Add attandance
                     </Link>
                   </li>
                   <li>
-                    <Link class="dropdown-item" to="#">
-                      View Students
+                    <Link class="dropdown-item" to="/viewAttandance">
+                      View Attandance
                     </Link>
                   </li>
                 </ul>

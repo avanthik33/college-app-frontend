@@ -35,6 +35,7 @@ const SignIn = () => {
         sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("expiryTime", response.data.expiryTime);
         sessionStorage.setItem("id", response.data.data._id);
+        sessionStorage.setItem("departmentId", response.data.data.department_id);
         navigate("/staffDash");
       } else {
         alert(response.data.message);
