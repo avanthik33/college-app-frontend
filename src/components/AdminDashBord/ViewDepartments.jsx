@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import AdminNavBar from "./NavBar";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const ViewDepartments = () => {
+  useTokenExpiry();
+
   const [data, setData] = useState([]);
   const [notHide, setNotHide] = useState(false);
   const [depId, setDepId] = useState(null);
@@ -19,6 +22,9 @@ const ViewDepartments = () => {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
+          if (response.data.status === "error") {
+            console.log(response.data.message);
+          }
           setData(response.data.depData);
         });
     } catch (error) {
@@ -38,6 +44,9 @@ const ViewDepartments = () => {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
+          if (response.data.status === "error") {
+            console.log(response.data.message);
+          }
           alert(response.data.message);
           fetchDepartment();
         });
@@ -63,6 +72,9 @@ const ViewDepartments = () => {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
+          if (response.data.status === "error") {
+            console.log(response.data.message);
+          }
           alert(response.data.message);
           fetchDepartment();
           handleHideFalse();

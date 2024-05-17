@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import AdminNavBar from "./NavBar";
 import HodNavBar from "../HodDashBord/HodNavBar";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const AddCourse = () => {
+  useTokenExpiry();
+
   const [department, setDepartment] = useState([]);
   const [input, setInput] = useState({
     admin_id: sessionStorage.getItem("id") || "",
@@ -21,6 +23,9 @@ const AddCourse = () => {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
+        if (response.data.status === "error") {
+          console.log(response.data.message);
+        }
         alert(response.data.message);
         setInput({
           ...input,
@@ -40,6 +45,9 @@ const AddCourse = () => {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
+        if (response.data.status === "error") {
+          console.log(response.data.message);
+        }
         setDepartment(response.data.depData);
       })
       .catch((error) => {

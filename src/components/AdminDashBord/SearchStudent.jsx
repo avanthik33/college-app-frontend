@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import AdminNavBar from "./NavBar";
 import axios from "axios";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const SearchStudent = () => {
+  useTokenExpiry();
+
   const [data, setData] = useState([]);
   const [input, setInput] = useState({
     name: "",
@@ -17,6 +20,9 @@ const SearchStudent = () => {
     axios
       .post("http://localhost:3001/student/searchStudentByName", input)
       .then((res) => {
+        if (res.data.status === "error") {
+          console.log(res.data.message);
+        }
         setData(res.data.data);
       });
   };

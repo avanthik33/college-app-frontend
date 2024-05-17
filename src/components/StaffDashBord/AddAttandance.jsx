@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import StaffNavBar from "./StaffNavBar";
 import axios from "axios";
 import "../StaffDashBord/AddAttandance.css";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const AddAttendance = () => {
+  useTokenExpiry();
   const departmentId = sessionStorage.getItem("departmentId");
 
   // State variables
@@ -25,6 +27,9 @@ const AddAttendance = () => {
         department_id: departmentId,
       })
       .then((response) => {
+        if (response.data.status === "error") {
+          console.log(response.data.message);
+        }
         setCourses(response.data.data);
       })
       .catch(() => {
@@ -40,6 +45,9 @@ const AddAttendance = () => {
     axios
       .post("http://localhost:3001/student/viewStudByCourse", input)
       .then((res) => {
+        if (res.data.status === "error") {
+          console.log(res.data.message);
+        }
         setStudents(res.data.data);
         setStudentFetched(true);
       });
@@ -65,7 +73,7 @@ const AddAttendance = () => {
       .then((response) => {
         if (response.data.status === "success") {
           alert("successfully marked attandance");
-          setPeriod("")
+          setPeriod("");
         } else {
           alert(response.data.message);
         }

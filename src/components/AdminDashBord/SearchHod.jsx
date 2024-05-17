@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import AdminNavBar from "./NavBar";
 import axios from "axios";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const SearchHod = () => {
+  useTokenExpiry();
+
   const [notHide, setNotHide] = useState(false);
   const [input, setInput] = useState({
     firstName: "",
@@ -21,6 +24,9 @@ const SearchHod = () => {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
+          if (response.data.status === "error") {
+            console.log(response.data.message);
+          }
           setData(response.data.data);
         });
     } catch (error) {
@@ -34,7 +40,7 @@ const SearchHod = () => {
   };
   return (
     <div>
-      <AdminNavBar/>
+      <AdminNavBar />
       <div className="container">
         <h1 style={{ fontFamily: "fantasy" }}>SEARCH HOD</h1>
         <hr />

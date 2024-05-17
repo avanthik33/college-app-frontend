@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import AdminNavBar from "./NavBar";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const ViewCourse = () => {
+  useTokenExpiry();
+
   const [data, setData] = useState([]);
   let length = data.length;
 
@@ -14,6 +15,9 @@ const ViewCourse = () => {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
+          if (response.data.status === "error") {
+            console.log(response.data.message);
+          }
           setData(response.data.Courses);
         });
     } catch (error) {

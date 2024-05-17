@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import HodNavBar from "./HodNavBar";
 import axios from "axios";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const ViewSubjectAllocation = () => {
+  useTokenExpiry();
+
   const [data, setData] = useState([]);
 
   const fetchData = () => {
@@ -12,6 +15,9 @@ const ViewSubjectAllocation = () => {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
+          if (response.data.status === "error") {
+            console.log(response.data.message);
+          }
           setData(response.data.data);
         });
     } catch (error) {

@@ -1,34 +1,9 @@
-import React, { useEffect } from "react";
 import NavBar from "./NavBar";
 import AdminCards from "./AdminCards";
-import { useNavigate } from "react-router-dom";
-import { parseExpiryTime } from "../../utils";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const AdminDash = () => {
-  const token = sessionStorage.getItem("token");
-
-  const navigate = useNavigate();
-  const expiryTime = sessionStorage.getItem("expiryTime");
-  const presentTime = new Date().getTime();
-  const handleTokenExpire = () => {
-    if (token && expiryTime) {
-      const expireTime = parseExpiryTime(expiryTime);
-      const checkTime = presentTime + expireTime;
-      if (Date.now() >= checkTime) {
-        console.log("Token Expired. Redirecting...");
-        sessionStorage.clear();
-        navigate("/");
-      } else {
-        console.log("Token is still valid.");
-      }
-    } else {
-      console.log("No token and expiry time available.");
-    }
-  };
-  useEffect(() => {
-    const intervalId = setInterval(handleTokenExpire, 60000);
-    return () => clearInterval(intervalId);
-  }, []);
+  useTokenExpiry();
   return (
     <div>
       <NavBar />

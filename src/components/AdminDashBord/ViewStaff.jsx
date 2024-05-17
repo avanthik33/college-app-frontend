@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AdminNavBar from "./NavBar";
-import HodNavBar from "../HodDashBord/HodNavBar";
-import { useLocation } from "react-router-dom";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const ViewStaff = () => {
+  useTokenExpiry();
+
   const [data, setData] = useState([]);
 
   const fetchStaffDetails = () => {
@@ -15,6 +15,9 @@ const ViewStaff = () => {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
+          if (response.data.status === "error") {
+            console.log(response.data.message);
+          }
           setData(response.data.data);
         });
     } catch (error) {

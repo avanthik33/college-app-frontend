@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import StaffNavBar from "./StaffNavBar";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const ViewStudentsStaff = () => {
+  useTokenExpiry();
+
   const [staffData, setStaffData] = useState({});
   const [studentData, setStudentData] = useState([]);
 
@@ -20,6 +23,9 @@ const ViewStudentsStaff = () => {
         }
       );
       setStudentData(response.data.data);
+      if (response.data.status === "error") {
+        console.log(response.data.message);
+      }
     } catch (error) {
       console.error("Failed to fetch student data", error);
     }
@@ -36,6 +42,9 @@ const ViewStudentsStaff = () => {
         }
       );
       setStaffData(response.data.data);
+      if (response.data.status === "error") {
+        console.log(response.data.message);
+      }
 
       const departmentId = response.data.data.department_id;
       await fetchStudentData(departmentId);

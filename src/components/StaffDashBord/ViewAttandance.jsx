@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import StaffNavBar from "./StaffNavBar";
 import axios from "axios";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const ViewAttandance = () => {
+  useTokenExpiry();
+
   const [searched, setSearched] = useState(false);
   const [input, setInput] = useState({
     date: "",
@@ -17,7 +20,9 @@ const ViewAttandance = () => {
     axios
       .post("http://localhost:3001/absent/viewAbsentees", input)
       .then((res) => {
-        console.log(res.data.status);
+        if (res.data.status === "error") {
+          console.log(res.data.message);
+        }
         setData(res.data.data);
       });
   };
