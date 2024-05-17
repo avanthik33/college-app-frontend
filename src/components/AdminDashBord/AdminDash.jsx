@@ -2,35 +2,14 @@ import React, { useEffect } from "react";
 import NavBar from "./NavBar";
 import AdminCards from "./AdminCards";
 import { useNavigate } from "react-router-dom";
-
-function parseExpiryTime(expiryTime) {
-  const numericPart = parseInt(expiryTime); // Extract numeric part
-  const unit = expiryTime.replace(/\d/g, ""); // Extract unit part (e.g., "d" for days)
-
-  // Define conversion factors for different units
-  const conversionFactors = {
-    d: 24 * 60 * 60 * 1000, // 1 day in milliseconds
-    h: 60 * 60 * 1000, // 1 hour in milliseconds
-    m: 60 * 1000, // 1 minute in milliseconds
-    s: 1000, // 1 second in milliseconds
-    // Add more units if needed
-  };
-
-  // If the unit is known, convert and return
-  if (unit in conversionFactors) {
-    return numericPart * conversionFactors[unit];
-  } else {
-    throw new Error("Unsupported unit: " + unit);
-  }
-}
+import { parseExpiryTime } from "../../utils";
 
 const AdminDash = () => {
-  const navigate = useNavigate();
   const token = sessionStorage.getItem("token");
+
+  const navigate = useNavigate();
   const expiryTime = sessionStorage.getItem("expiryTime");
-
   const presentTime = new Date().getTime();
-
   const handleTokenExpire = () => {
     if (token && expiryTime) {
       const expireTime = parseExpiryTime(expiryTime);
@@ -46,15 +25,14 @@ const AdminDash = () => {
       console.log("No token and expiry time available.");
     }
   };
-
   useEffect(() => {
     const intervalId = setInterval(handleTokenExpire, 60000);
     return () => clearInterval(intervalId);
   }, []);
   return (
     <div>
-      <NavBar  />
-      <div className="container-fluid">
+      <NavBar />
+      <div className="container">
         <div className="row">
           <div className="row g-3 col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
             <AdminCards heading="Add department" link="/addDep" />
