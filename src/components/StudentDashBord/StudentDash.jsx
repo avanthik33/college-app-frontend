@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import StudentNav from "./StudentNav";
+import AdminCards from "../AdminDashBord/AdminCards";
 
 function parseExpiryTime(expiryTime) {
   const numericPart = parseInt(expiryTime); // Extract numeric part
@@ -51,9 +52,20 @@ const StudentDash = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  return <div>
-    <StudentNav/>
-  </div>;
+  return (
+    <div>
+      <StudentNav />
+      <div className="container">
+        <div className="row">
+          <div className="row g-3">
+            <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+              <AdminCards heading="view Attandance" link="/studentAttandance" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default StudentDash;

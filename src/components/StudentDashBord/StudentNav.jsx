@@ -40,7 +40,7 @@ const StudentNav = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="#">
+                  <Link className="nav-link" to="/studentProfile">
                     Profile
                   </Link>
                 </li>
@@ -56,7 +56,7 @@ const StudentNav = () => {
                   </Link>
                   <ul class="dropdown-menu">
                     <li>
-                      <Link class="dropdown-item" to="#">
+                      <Link class="dropdown-item" to="/studentAttandance">
                         View Attandance
                       </Link>
                     </li>
