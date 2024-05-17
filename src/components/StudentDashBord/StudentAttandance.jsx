@@ -11,7 +11,11 @@ const StudentAttandance = () => {
 
   const fetchData = () => {
     axios
-      .post("http://localhost:3001/absent/viewAbsent", { id: studentId })
+      .post(
+        "http://localhost:3001/absent/viewAbsent",
+        { id: studentId },
+        { headers: { token: sessionStorage.getItem("token") } }
+      )
       .then((res) => {
         if (res.data.status === "error") {
           console.log(res.data.message);

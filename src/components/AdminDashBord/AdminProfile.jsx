@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminNavBar from "./NavBar";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import useTokenExpiry from "../../tokenExpireTime";
 
 const AdminProfile = () => {

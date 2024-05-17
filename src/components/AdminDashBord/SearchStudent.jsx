@@ -18,7 +18,9 @@ const SearchStudent = () => {
 
   const fetchData = () => {
     axios
-      .post("http://localhost:3001/student/searchStudentByName", input)
+      .post("http://localhost:3001/student/searchStudentByName", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((res) => {
         if (res.data.status === "error") {
           console.log(res.data.message);

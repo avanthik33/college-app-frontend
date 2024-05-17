@@ -8,7 +8,7 @@ const AddCourse = () => {
 
   const [department, setDepartment] = useState([]);
   const [input, setInput] = useState({
-    admin_id: sessionStorage.getItem("id") || "",
+    admin_id: sessionStorage.getItem("id"),
     department_id: "",
     course: "",
   });

@@ -23,9 +23,13 @@ const AddAttendance = () => {
 
   const listCourses = () => {
     axios
-      .post("http://localhost:3001/course/viewCourseByDep", {
-        department_id: departmentId,
-      })
+      .post(
+        "http://localhost:3001/course/viewCourseByDep",
+        {
+          department_id: departmentId,
+        },
+        { headers: { token: sessionStorage.getItem("token") } }
+      )
       .then((response) => {
         if (response.data.status === "error") {
           console.log(response.data.message);
@@ -43,7 +47,9 @@ const AddAttendance = () => {
 
   const fetchStudents = () => {
     axios
-      .post("http://localhost:3001/student/viewStudByCourse", input)
+      .post("http://localhost:3001/student/viewStudByCourse", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((res) => {
         if (res.data.status === "error") {
           console.log(res.data.message);
@@ -69,7 +75,11 @@ const AddAttendance = () => {
     };
 
     axios
-      .post("http://localhost:3001/absent/addAbsent", { absentees })
+      .post(
+        "http://localhost:3001/absent/addAbsent",
+        { absentees },
+        { headers: { token: sessionStorage.getItem("token") } }
+      )
       .then((response) => {
         if (response.data.status === "success") {
           alert("successfully marked attandance");

@@ -18,7 +18,9 @@ const ViewAttandance = () => {
 
   const searchByDate = () => {
     axios
-      .post("http://localhost:3001/absent/viewAbsentees", input)
+      .post("http://localhost:3001/absent/viewAbsentees", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((res) => {
         if (res.data.status === "error") {
           console.log(res.data.message);
