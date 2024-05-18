@@ -1,0 +1,132 @@
+/* General styles for the card container */
+.admin-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* Styles for the card itself */
+.admin-card {
+  width: 330px;
+  height: 190px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: #fff;
+}
+
+.admin-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the card body */
+.admin-card-body {
+  padding: 24px;
+  text-align: center;
+}
+
+/* Styles for the card title */
+.admin-card-title {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f0f0f0;
+}
+
+/* Styles for the link button */
+.admin-card-link {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.admin-card-link:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+/* Optional: Adding subtle animations for a modern touch */
+@keyframes card-entry {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-card {
+  animation: card-entry 0.6s ease-out;
+}
+
+
+/* Profile of admin */
+/* Admin profile page styles */
+
+/* Profile card styles */
+.profile-card {
+  width: 100%;
+  max-width: 400px; /* Limiting card width */
+  background-color: #f8f9fa; /* Light background color */
+  border: 1px solid #dee2e6; /* Border color */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.profile-card .card-header {
+  background-color: #007bff; /* Primary color for card header */
+  color: white; /* Text color */
+  padding: 10px; /* Padding */
+  border-top-left-radius: 10px; /* Rounded corners for top */
+  border-top-right-radius: 10px; /* Rounded corners for top */
+}
+
+.profile-card .card-body {
+  padding: 20px; /* Padding */
+}
+
+.profile-item {
+  margin-bottom: 10px; /* Spacing between profile items */
+}
+
+/* Update profile button styles */
+.update-profile-btn,
+.save-changes-btn {
+  width: 170px; /* Button width */
+  height: 50px; /* Button height */
+  margin-top: 30px; /* Spacing from top */
+}
+
+/* Update profile button color */
+.update-profile-btn {
+  background-color: #007bff; /* Primary button color */
+}
+
+/* Save changes button color */
+.save-changes-btn {
+  background-color: #28a745; /* Success button color */
+}
+
+/* Button text color */
+.btn-primary,
+.btn-success {
+  color: white; /* Button text color */
+}
+
+/* Hover effect for buttons */
+.btn-primary:hover,
+.btn-success:hover {
+  opacity: 0.8; /* Reduced opacity on hover */
+}

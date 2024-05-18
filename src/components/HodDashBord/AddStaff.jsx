@@ -113,7 +113,7 @@ const AddStaff = () => {
   return (
     <div>
       <HodNavBar />
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <h1>ADD STAFF</h1>
         </div>

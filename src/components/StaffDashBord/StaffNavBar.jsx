@@ -8,8 +8,9 @@ const StaffNavBar = () => {
   return (
     <div>
       <nav
-        class="navbar navbar-expand-lg navbar-light"
-        style={{ backgroundColor: " #e3f2fd" }}
+        class="navbar bg-dark border-bottom border-body navbar-expand-lg"
+        data-bs-theme="dark"
+        style={{ height: "80px" }}
       >
         <div className="container">
           <h2 className="navbar-brand">ABC COLLEGE</h2>

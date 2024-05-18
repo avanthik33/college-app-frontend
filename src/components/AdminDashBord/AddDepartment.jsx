@@ -37,7 +37,7 @@ const AddDepartment = () => {
   return (
     <div>
       <NavBar />
-      <div className="container">
+      <div className="container-fluid">
         <h1 style={{ fontFamily: "fantasy" }}>ADD DEPARTMENT</h1>
         <hr />
         <div className="row g-3 justify-content-center">

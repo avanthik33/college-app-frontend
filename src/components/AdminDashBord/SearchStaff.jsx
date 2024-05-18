@@ -39,7 +39,7 @@ const SearchStaff = () => {
   };
   return (
     <div>
-      <div className="container">
+      <div className="container-fluid">
         <h1 style={{ fontFamily: "fantasy" }}>SEARCH STAFF</h1>
         <hr />
         <div className="row">

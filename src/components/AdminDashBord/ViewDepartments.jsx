@@ -92,7 +92,7 @@ const ViewDepartments = () => {
   return (
     <div>
       <AdminNavBar />
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <h1 style={{ fontFamily: "fantasy" }}>DEPARTMENTS</h1>
           <hr />

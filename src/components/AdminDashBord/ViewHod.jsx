@@ -34,7 +34,7 @@ const ViewHod = () => {
   return (
     <div>
       <AdminNavBar />
-      <div className="container">
+      <div className="container-fluid">
         <h1 style={{ fontFamily: "fantasy" }}>HOD'S</h1>
         <hr />
         {length === 0 ? (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StaffNavBar from "./StaffNavBar";
 import axios from "axios";
 import useTokenExpiry from "../../tokenExpireTime";
@@ -9,8 +9,11 @@ const ViewAttandance = () => {
   const [searched, setSearched] = useState(false);
   const [input, setInput] = useState({
     date: "",
+    course_id: "",
   });
   const [data, setData] = useState([]);
+  const [course, setCourse] = useState([]);
+  const departmentId = sessionStorage.getItem("departmentId");
 
   const handleInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -26,6 +29,9 @@ const ViewAttandance = () => {
           console.log(res.data.message);
         }
         setData(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
   const handleSearched = () => {
@@ -36,11 +42,29 @@ const ViewAttandance = () => {
     handleSearched();
     searchByDate();
   };
-  console.log(data);
+
+  const fetchCourses = () => {
+    axios
+      .post(
+        "http://localhost:3001/course/viewCourseByDep",
+        { department_id: departmentId },
+        { headers: { token: sessionStorage.getItem("token") } }
+      )
+      .then((res) => {
+        setCourse(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+  console.log(input);
   return (
     <div>
       <StaffNavBar />
-      <div className="container-flex">
+      <div className="container-fluid">
         <h1>View Attandance</h1>
         <div className="row">
           <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
@@ -55,6 +79,29 @@ const ViewAttandance = () => {
               name="date"
             />
           </div>
+          <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+            <label htmlFor="" className="form-label">
+              Select Course
+            </label>
+            <select
+              name="course_id"
+              value={input.course_id}
+              onChange={handleInput}
+              id=""
+              className="form-control"
+            >
+              <option value="">select</option>
+              {course.map((value, index) => {
+                return (
+                  <option key={index} value={value._id}>
+                    {value.course}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </div>
+        <div className="row">
           <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
             <button className="btn btn-success" onClick={handleClick}>
               Search

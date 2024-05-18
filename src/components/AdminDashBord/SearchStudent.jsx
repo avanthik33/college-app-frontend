@@ -23,14 +23,15 @@ const SearchStudent = () => {
       })
       .then((res) => {
         if (res.data.status === "error") {
-          console.log(res.data.message);
+          alert(res.data.message);
         }
         setData(res.data.data);
+      })
+      .catch((error) => {
+        alert("Error fetching data Please try agiain later")
+        console.log(error.message);
       });
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const handleHide = () => {
     setHide(true);
@@ -44,7 +45,7 @@ const SearchStudent = () => {
   return (
     <div>
       <AdminNavBar />
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <label htmlFor="" className="form-label">

@@ -41,7 +41,7 @@ const SearchHod = () => {
   return (
     <div>
       <AdminNavBar />
-      <div className="container">
+      <div className="container-fluid">
         <h1 style={{ fontFamily: "fantasy" }}>SEARCH HOD</h1>
         <hr />
         <div className="row">

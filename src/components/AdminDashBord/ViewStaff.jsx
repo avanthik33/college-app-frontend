@@ -33,7 +33,7 @@ const ViewStaff = () => {
   }, []);
   return (
     <div>
-      <div className="container">
+      <div className="container-fluid">
         <h1 style={{ fontFamily: "fantasy" }}>STAFF'S</h1>
         <hr />
         <div className="row">

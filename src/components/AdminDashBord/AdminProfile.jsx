@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AdminNavBar from "./NavBar";
 import axios from "axios";
 import useTokenExpiry from "../../tokenExpireTime";
+import "./AdminCard.css";
 
 const AdminProfile = () => {
   const [data, setData] = useState([]);
@@ -67,61 +68,32 @@ const AdminProfile = () => {
   return (
     <div>
       <AdminNavBar />
-      <div className="container">
-        <div
-          className="row g-3"
-          style={{
-            marginTop: "20px",
-          }}
-        >
-          <div className="col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-            <div
-              className="card"
-              style={{
-                width: "650px",
-                height: "300px",
-                backgroundColor: "lightgrey",
-              }}
-            >
+      <div className="container-fluid">
+        <div className="row g-3 justify-content-center mt-5">
+          <div className="col-sm-12 col-md-6">
+            <div className="profile-card card">
               <div className="card-header">
-                <h1 className="card-title" style={{ fontFamily: "fantasy" }}>
-                  Profile
-                </h1>
+                <h1 className="card-title">Profile</h1>
               </div>
-              <div
-                className="card-body"
-                style={{
-                  fontSize: "30px",
-                  fontFamily: "inherit",
-                }}
-              >
+              <div className="card-body">
                 {data && (
                   <div>
                     <p className="profile-item">
-                      <strong>Email : </strong> {data.email}
+                      <strong>Email:</strong> {data.email}
                     </p>
                     <p className="profile-item">
-                      <strong>Password : </strong> {data.password}
+                      <strong>Password:</strong> {data.password}
                     </p>
                   </div>
                 )}
               </div>
             </div>
           </div>
-          <div className="col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+          <div className="col-sm-12 col-md-6">
             {hide && (
-              <div
-                className="card"
-                style={{
-                  width: "650px",
-                  height: "300px",
-                  backgroundColor: "lightgreen",
-                }}
-              >
+              <div className="profile-card card">
                 <div className="card-header">
-                  <h1 className="card-title" style={{ fontFamily: "fantasy" }}>
-                    Update Profile
-                  </h1>
+                  <h1 className="card-title">Update Profile</h1>
                 </div>
                 <div className="card-body">
                   {data && (
@@ -154,13 +126,7 @@ const AdminProfile = () => {
         <div className="row g-3 justify-content-center">
           {!hide && (
             <button
-              className="btn btn-success"
-              style={{
-                fontFamily: "cursive",
-                width: "170px",
-                textAlign: "center",
-                marginTop: "30px",
-              }}
+              className="btn btn-primary update-profile-btn"
               onClick={handleHide}
             >
               Update Profile
@@ -168,14 +134,7 @@ const AdminProfile = () => {
           )}
           {hide && (
             <button
-              className="btn btn-primary"
-              style={{
-                fontFamily: "cursive",
-                width: "160px",
-                height: "50px",
-                textAlign: "center",
-                marginTop: "30px",
-              }}
+              className="btn btn-success save-changes-btn"
               onClick={handleUpdateProfile}
             >
               Save Changes

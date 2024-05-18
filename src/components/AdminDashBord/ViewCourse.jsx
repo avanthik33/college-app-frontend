@@ -32,7 +32,7 @@ const ViewCourse = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className="container-fluid">
         <h1 style={{ fontFamily: "fantasy" }}>COURSES</h1>
         <hr />
         {length === 0 ? (
