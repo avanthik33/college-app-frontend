@@ -39,7 +39,8 @@ const StudentAttandance = () => {
     <div>
       <StudentNav />
       <div className="container-fluid">
-        <h1>View Absent Details</h1>
+        <h1 style={{ fontFamily: "fantasy" }}>ABSENT DETAILS</h1>
+        <hr />
         <div className="row">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <table class="table">
