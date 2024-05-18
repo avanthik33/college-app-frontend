@@ -56,27 +56,31 @@ const ViewStudentsStaff = () => {
   useEffect(() => {
     fetchStaffData();
   }, []);
-
+  console.log(studentData);
   return (
     <div>
       <StaffNavBar />
       <div className="container-fluid">
+        <h1 style={{ fontFamily: "fantasy" }}>VIEW STUDENTS</h1>
+        <hr />
         <div className="row">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-            <div className="row">
+            <div className="row g-3">
               {studentData.map((value, index) => {
                 return (
                   <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
-                    <div className="card">
-                      <div className="card-body">
-                        <h5 className="card-title">{value.firstName}</h5>
+                    <div className="card students">
+                      <div className="card-body studentsBody">
+                        <h5 className="card-title studentsTitle">
+                          {value.firstName}
+                        </h5>
                         <h6 className="card-subtitle mb-2 text-body-secondary">
                           {value.email}
                         </h6>
-                        <p className="card-text">{value.phoneNo}</p>
-                        <Link to="#" className="card-link">
-                          Search about student
-                        </Link>
+                        <p className="card-text studentText">{value.phoneNo}</p>
+                        <p className="card-text studentText">
+                          {value.course_id.course}
+                        </p>
                       </div>
                     </div>
                   </div>
