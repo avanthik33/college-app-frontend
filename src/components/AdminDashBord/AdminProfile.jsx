@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import AdminNavBar from "./NavBar";
 import axios from "axios";
 import useTokenExpiry from "../../tokenExpireTime";
-import "./AdminCard.css";
 
 const AdminProfile = () => {
   const [data, setData] = useState([]);
@@ -69,76 +68,92 @@ const AdminProfile = () => {
     <div>
       <AdminNavBar />
       <div className="container-fluid">
-        <div className="row g-3 justify-content-center mt-5">
-          <div className="col-sm-12 col-md-6">
-            <div className="profile-card card">
-              <div className="card-header">
-                <h1 className="card-title">Profile</h1>
-              </div>
-              <div className="card-body">
-                {data && (
-                  <div>
-                    <p className="profile-item">
-                      <strong>Email:</strong> {data.email}
-                    </p>
-                    <p className="profile-item">
-                      <strong>Password:</strong> {data.password}
-                    </p>
-                  </div>
-                )}
+        <div className="row g-3 mt-5">
+          <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <div className="adminProfile">
+              <div className="card adminProfileCard">
+                <div className="card-header adminProfileCardHeader">
+                  <h1 className="card-title adminProfileTitle">Profile</h1>
+                </div>
+                <div className="card-body adminProfilBody">
+                  {data && (
+                    <div>
+                      <p className="profile-item">
+                        <strong>Email:</strong> {data.email}
+                      </p>
+                      <p className="profile-item">
+                        <strong>Password:</strong> {data.password}
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-sm-12 col-md-6">
+          <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             {hide && (
-              <div className="profile-card card">
-                <div className="card-header">
-                  <h1 className="card-title">Update Profile</h1>
-                </div>
-                <div className="card-body">
-                  {data && (
-                    <div>
-                      <label className="form-label">Email</label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        value={input.email}
-                        name="email"
-                        required
-                        autoFocus
-                        onChange={handleInput}
-                      />
-                      <label className="form-label">Password</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={input.password}
-                        name="password"
-                        onChange={handleInput}
-                      />
-                    </div>
-                  )}
+              <div className="adminProfile">
+                <div className="card adminProfileCard">
+                  <div className="card-header adminProfileCardHeader">
+                    <h1 className="card-title adminProfileTitle">
+                      Update Profile
+                    </h1>
+                  </div>
+                  <div className="card-body adminProfilBody">
+                    {data && (
+                      <div>
+                        <label className="form-label">Email</label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          value={input.email}
+                          name="email"
+                          required
+                          autoFocus
+                          onChange={handleInput}
+                        />
+                        <label className="form-label">Password</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={input.password}
+                          name="password"
+                          onChange={handleInput}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
           </div>
         </div>
-        <div className="row g-3 justify-content-center">
+        <div className="row g-3">
           {!hide && (
-            <button
-              className="btn btn-primary update-profile-btn"
-              onClick={handleHide}
+            <div
+              className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12"
+              style={{ textAlign: "center" }}
             >
-              Update Profile
-            </button>
+              <button
+                className="btn btn-primary update-profile-btn"
+                onClick={handleHide}
+              >
+                Update Profile
+              </button>
+            </div>
           )}
           {hide && (
+            <div
+              className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12"
+              style={{ textAlign: "center" }}
+            >
             <button
-              className="btn btn-success save-changes-btn"
+              className="btn btn-success update-profile-btn"
               onClick={handleUpdateProfile}
             >
               Save Changes
             </button>
+            </div>
           )}
         </div>
       </div>

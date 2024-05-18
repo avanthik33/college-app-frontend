@@ -72,61 +72,160 @@
   animation: card-entry 0.6s ease-out;
 }
 
+/* admin profile */
+.adminProfile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
 
-/* Profile of admin */
-/* Admin profile page styles */
-
-/* Profile card styles */
-.profile-card {
+.adminProfileCard {
   width: 100%;
-  max-width: 400px; /* Limiting card width */
-  background-color: #f8f9fa; /* Light background color */
-  border: 1px solid #dee2e6; /* Border color */
-  border-radius: 10px; /* Rounded corners */
+  max-width: 700px; /* Adjust the max width for responsiveness */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  overflow: hidden;
+  background-color: #ffffff;
 }
 
-.profile-card .card-header {
-  background-color: #007bff; /* Primary color for card header */
-  color: white; /* Text color */
-  padding: 10px; /* Padding */
-  border-top-left-radius: 10px; /* Rounded corners for top */
-  border-top-right-radius: 10px; /* Rounded corners for top */
+.adminProfileCardHeader {
+  background-color: #002366;
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
 }
 
-.profile-card .card-body {
-  padding: 20px; /* Padding */
+.adminProfileTitle {
+  font-family: "Arial, sans-serif";
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.adminProfileBody {
+  padding: 20px;
 }
 
 .profile-item {
-  margin-bottom: 10px; /* Spacing between profile items */
+  font-family: "Arial, sans-serif";
+  font-size: 1rem;
+  color: #333333;
+  margin-bottom: 15px;
 }
 
-/* Update profile button styles */
-.update-profile-btn,
-.save-changes-btn {
-  width: 170px; /* Button width */
-  height: 50px; /* Button height */
-  margin-top: 30px; /* Spacing from top */
+.profile-item strong {
+  color: #002366;
 }
-
-/* Update profile button color */
 .update-profile-btn {
-  background-color: #007bff; /* Primary button color */
+  background-color: #002366; /* Dark blue background */
+  color: #ffffff; /* White text */
+  font-family: "Arial, sans-serif"; /* Clean font */
+  font-size: 1rem; /* Font size */
+  font-weight: bold; /* Bold text */
+  padding: 10px 20px; /* Padding for size */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
 }
 
-/* Save changes button color */
-.save-changes-btn {
-  background-color: #28a745; /* Success button color */
+.update-profile-btn:hover {
+  background-color: #001a4d; /* Darker blue on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
 }
 
-/* Button text color */
-.btn-primary,
-.btn-success {
-  color: white; /* Button text color */
+.update-profile-btn:active {
+  background-color: #001033; /* Even darker blue on click */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Less shadow on click */
 }
 
-/* Hover effect for buttons */
-.btn-primary:hover,
-.btn-success:hover {
-  opacity: 0.8; /* Reduced opacity on hover */
+/* button for checkmessages */
+.checkMessages.disabled {
+  pointer-events: none; /* Disable pointer events */
+  opacity: 0.6; /* Make the link look disabled */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+}
+
+
+/* staff card */
+
+.staffCard {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.staffCard .card {
+  width: 100%;
+  background-color: white;
+  border: none;
+  box-shadow: none;
+}
+
+.staffBody {
+  padding: 10px;
+}
+
+.staffTitle {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.staffSubtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+.staffText {
+  font-size: 1rem;
+  color: #555;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c;
+}
+
+
+/* course view of hod */
+.courseHod {
+  border: 1px solid #ddd; /* Add a border */
+  border-radius: 8px; /* Add border radius for rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  transition: box-shadow 0.3s ease; /* Add transition effect for shadow */
+}
+
+.courseHod:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.courseBodyHod {
+  padding: 20px; /* Add padding inside the card body */
+}
+
+.courseTitleHod {
+  color: #333; /* Set the title color */
+  font-weight: bold; /* Make the title bold */
+}
+
+.card-subtitle {
+  color: #666; /* Set the subtitle color */
+  font-size: 14px; /* Adjust the font size */
 }

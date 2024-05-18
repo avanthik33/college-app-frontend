@@ -3,7 +3,6 @@ import axios from "axios";
 import HodNavBar from "./HodNavBar";
 import useTokenExpiry from "../../tokenExpireTime";
 
-
 const AddStaff = () => {
   const [department, setDepartment] = useState([]);
   const [hodDep, setHodDep] = useState(null);
@@ -114,9 +113,8 @@ const AddStaff = () => {
     <div>
       <HodNavBar />
       <div className="container-fluid">
-        <div className="row">
-          <h1>ADD STAFF</h1>
-        </div>
+        <h1 style={{ fontFamily: "fantasy" }}>ADD STAFF</h1>
+        <hr />
         <div className="row g-3">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <label htmlFor="" className="form-label">

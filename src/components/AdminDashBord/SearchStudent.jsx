@@ -46,10 +46,12 @@ const SearchStudent = () => {
     <div>
       <AdminNavBar />
       <div className="container-fluid">
+        <h1 style={{ fontFamily: "fantasy" }}>SEARCH STUDENT</h1>
+        <hr />
         <div className="row">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <label htmlFor="" className="form-label">
-              Search student By name
+              Enter the First Name
             </label>
             <input
               type="text"

@@ -78,144 +78,142 @@ const HodProfile = () => {
     <div>
       <HodNavBar />
       <div className="container-fluid">
-        <div
-          className="row g-3"
-          style={{
-            marginTop: "20px",
-          }}
-        >
+        <div className="row g-3">
           <div className="col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-            <div
-              className="card"
-              style={{
-                width: "650px",
-                height: "900px",
-                backgroundColor: "lightgrey",
-              }}
-            >
-              <div className="card-header">
-                <h1 className="card-title" style={{ fontFamily: "fantasy" }}>
-                  Profile
-                </h1>
-              </div>
-              <div
-                className="card-body"
-                style={{
-                  fontSize: "30px",
-                  fontFamily: "inherit",
-                }}
-              >
-                {data && (
-                  <div>
-                    <p className="profile-item" style={{ paddingTop: "30px" }}>
-                      <strong>First Name : </strong> {data.firstName}
-                    </p>
-                    <p className="profile-item" style={{ paddingTop: "30px" }}>
-                      <strong>Last Name : </strong> {data.lastName}
-                    </p>
-                    <p className="profile-item" style={{ paddingTop: "30px" }}>
-                      <strong>Gender : </strong> {data.gender}
-                    </p>
-                    <p className="profile-item" style={{ paddingTop: "30px" }}>
-                      <strong>Qualification : </strong> {data.qualification}
-                    </p>
-                    <p className="profile-item" style={{ paddingTop: "30px" }}>
-                      <strong>Email : </strong> {data.email}
-                    </p>
-                    <p className="profile-item" style={{ paddingTop: "30px" }}>
-                      <strong>Phone No : </strong> {data.phoneNo}
-                    </p>
-                    <p className="profile-item" style={{ paddingTop: "30px" }}>
-                      <strong>Password : </strong> {data.password}
-                    </p>
-                  </div>
-                )}
+            <div className="adminProfile">
+              <div className="card adminProfileCard">
+                <div className="card-header adminProfileCardHeader">
+                  <h1 className="card-title adminProfileTitle">Profile</h1>
+                </div>
+                <div className="card-body adminProfilBody">
+                  {data && (
+                    <div>
+                      <p
+                        className="profile-item"
+                        style={{ paddingTop: "30px" }}
+                      >
+                        <strong>First Name : </strong> {data.firstName}
+                      </p>
+                      <p
+                        className="profile-item"
+                        style={{ paddingTop: "30px" }}
+                      >
+                        <strong>Last Name : </strong> {data.lastName}
+                      </p>
+                      <p
+                        className="profile-item"
+                        style={{ paddingTop: "30px" }}
+                      >
+                        <strong>Gender : </strong> {data.gender}
+                      </p>
+                      <p
+                        className="profile-item"
+                        style={{ paddingTop: "30px" }}
+                      >
+                        <strong>Qualification : </strong> {data.qualification}
+                      </p>
+                      <p
+                        className="profile-item"
+                        style={{ paddingTop: "30px" }}
+                      >
+                        <strong>Email : </strong> {data.email}
+                      </p>
+                      <p
+                        className="profile-item"
+                        style={{ paddingTop: "30px" }}
+                      >
+                        <strong>Phone No : </strong> {data.phoneNo}
+                      </p>
+                      <p
+                        className="profile-item"
+                        style={{ paddingTop: "30px" }}
+                      >
+                        <strong>Password : </strong> {data.password}
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
           <div className="col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
             {hide && (
-              <div
-                className="card"
-                style={{
-                  width: "650px",
-                  height: "900px",
-                  backgroundColor: "lightgreen",
-                }}
-              >
-                <div className="card-header">
-                  <h1 className="card-title" style={{ fontFamily: "fantasy" }}>
-                    Update Profile
-                  </h1>
-                </div>
-                <div className="card-body">
-                  {data && (
-                    <div>
-                      <label className="form-label">Fist Name*</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={input.firstName}
-                        name="firstName"
-                        required
-                        autoFocus
-                        onChange={handleInput}
-                      />
-                      <label className="form-label">Last Name*</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={input.lastName}
-                        name="lastName"
-                        required
-                        onChange={handleInput}
-                      />
-                      <label className="form-label">Gender*</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={input.gender}
-                        name="gender"
-                        required
-                        onChange={handleInput}
-                      />
-                      <label className="form-label">Qualificaion*</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={input.qualification}
-                        name="qualification"
-                        required
-                        onChange={handleInput}
-                      />
-                      <label className="form-label">Email*</label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        value={input.email}
-                        name="email"
-                        required
-                        onChange={handleInput}
-                      />
-                      <label className="form-label">Phone No*</label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        value={input.phoneNo}
-                        name="phoneNo"
-                        required
-                        onChange={handleInput}
-                      />
-                      <label className="form-label">Password*</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={input.password}
-                        name="password"
-                        onChange={handleInput}
-                      />
-                    </div>
-                  )}
+              <div className="adminProfile">
+                <div className="card adminProfileCard">
+                  <div className="card-header adminProfileCardHeader">
+                    <h1 className="card-title adminProfileTitle">
+                      Update Profile
+                    </h1>
+                  </div>
+                  <div className="card-body adminProfilBody">
+                    {data && (
+                      <div>
+                        <label className="form-label">Fist Name*</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={input.firstName}
+                          name="firstName"
+                          required
+                          autoFocus
+                          onChange={handleInput}
+                        />
+                        <label className="form-label">Last Name*</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={input.lastName}
+                          name="lastName"
+                          required
+                          onChange={handleInput}
+                        />
+                        <label className="form-label">Gender*</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={input.gender}
+                          name="gender"
+                          required
+                          onChange={handleInput}
+                        />
+                        <label className="form-label">Qualificaion*</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={input.qualification}
+                          name="qualification"
+                          required
+                          onChange={handleInput}
+                        />
+                        <label className="form-label">Email*</label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          value={input.email}
+                          name="email"
+                          required
+                          onChange={handleInput}
+                        />
+                        <label className="form-label">Phone No*</label>
+                        <input
+                          type="number"
+                          className="form-control"
+                          value={input.phoneNo}
+                          name="phoneNo"
+                          required
+                          onChange={handleInput}
+                        />
+                        <label className="form-label">Password*</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={input.password}
+                          name="password"
+                          onChange={handleInput}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -224,13 +222,7 @@ const HodProfile = () => {
         <div className="row g-3 justify-content-center">
           {!hide && (
             <button
-              className="btn btn-success"
-              style={{
-                fontFamily: "cursive",
-                width: "170px",
-                textAlign: "center",
-                marginTop: "30px",
-              }}
+              className="btn btn-success update-profile-btn"
               onClick={handleHide}
             >
               Update Profile
@@ -238,14 +230,7 @@ const HodProfile = () => {
           )}
           {hide && (
             <button
-              className="btn btn-primary"
-              style={{
-                fontFamily: "cursive",
-                width: "160px",
-                height: "50px",
-                textAlign: "center",
-                marginTop: "30px",
-              }}
+              className="btn btn-primary update-profile-btn"
               onClick={handleUpdateProfile}
             >
               Save Changes
