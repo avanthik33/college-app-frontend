@@ -33,6 +33,10 @@ const SignIn = () => {
             sessionStorage.setItem("token", response.data.token);
             sessionStorage.setItem("expiryTime", response.data.expiryTime);
             sessionStorage.setItem("id", response.data.data._id);
+            sessionStorage.setItem(
+              "department_id",
+              response.data.data.department_id
+            );
             navigate("/hodDash");
           } else if (response.data.message === "Staff login success") {
             sessionStorage.setItem("token", response.data.token);
@@ -47,8 +51,8 @@ const SignIn = () => {
             alert(response.data.message);
             setInput({ email: "", password: "" });
           }
-        }else{
-          alert(response.data.message)
+        } else {
+          alert(response.data.message);
         }
       })
       .catch((error) => {

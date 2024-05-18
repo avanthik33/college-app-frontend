@@ -32,6 +32,8 @@ const ViewSubjectAllocation = () => {
     <div>
       <HodNavBar />
       <div className="container-fluid">
+        <h1 style={{ fontFamily: "fantasy" }}>ALLOCATED SUBJECTS</h1>
+        <hr />
         {data.map((value, index) => {
           return (
             <div className="row">

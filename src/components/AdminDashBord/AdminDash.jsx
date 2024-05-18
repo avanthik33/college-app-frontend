@@ -9,10 +9,13 @@ const AdminDash = () => {
   const [totalStudents, setTotalStudents] = useState(0);
   const [totalStaffs, setTotalStaffs] = useState(0);
   const [totalHods, setTotalHods] = useState(0);
+  const [disabled, setDisabled] = useState(true);
 
   const fetchTotalHods = () => {
     axios
-      .get("http://localhost:3001/hod/totalHods")
+      .get("http://localhost:3001/hod/totalHods", {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((res) => {
         setTotalHods(res.data.data);
       })
@@ -35,7 +38,9 @@ const AdminDash = () => {
   };
   const fetchTotalStaffs = () => {
     axios
-      .get("http://localhost:3001/staff/totalStaffs")
+      .get("http://localhost:3001/staff/totalStaffs", {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((res) => {
         setTotalStaffs(res.data.data);
       })
@@ -221,7 +226,13 @@ const AdminDash = () => {
                   Supporting with staffs and students will decrease the
                   collision inside the institution.
                 </p>
-                <Link to="#" class="btn btn-primary">
+
+                <Link
+                  to="#"
+                  class={`btn btn-primary checkMessages ${
+                    disabled ? "disabled" : ""
+                  }`}
+                >
                   Check Messages
                 </Link>
               </div>
