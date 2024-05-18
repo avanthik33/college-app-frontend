@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import AdminNavBar from "./NavBar";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const SearchStaff = () => {
+  useTokenExpiry();
+
   const [notHide, setNotHide] = useState(false);
   const [input, setInput] = useState({
     firstName: "",
@@ -21,6 +23,9 @@ const SearchStaff = () => {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
+          if (response.data.status === "error") {
+            console.log(response.data.message);
+          }
           setData(response.data.data);
         });
     } catch (error) {
@@ -34,7 +39,7 @@ const SearchStaff = () => {
   };
   return (
     <div>
-      <div className="container">
+      <div className="container-fluid">
         <h1 style={{ fontFamily: "fantasy" }}>SEARCH STAFF</h1>
         <hr />
         <div className="row">

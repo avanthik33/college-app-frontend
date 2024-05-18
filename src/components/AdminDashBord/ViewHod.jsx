@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import AdminNavBar from "./NavBar";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const ViewHod = () => {
+  useTokenExpiry();
+
   const [data, setData] = useState([]);
   let length = data.length;
 
@@ -14,6 +17,9 @@ const ViewHod = () => {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
+          if (response.data.status === "error") {
+            console.log(response.data.message);
+          }
           setData(response.data.data);
         });
     } catch (error) {
@@ -28,7 +34,7 @@ const ViewHod = () => {
   return (
     <div>
       <AdminNavBar />
-      <div className="container">
+      <div className="container-fluid">
         <h1 style={{ fontFamily: "fantasy" }}>HOD'S</h1>
         <hr />
         {length === 0 ? (

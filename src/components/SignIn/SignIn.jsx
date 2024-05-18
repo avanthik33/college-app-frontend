@@ -15,37 +15,49 @@ const SignIn = () => {
   };
 
   const submitHandle = () => {
-    axios.post("http://localhost:3001/admin/signin", input).then((response) => {
-      if (response.data.message === "Student login success") {
-        sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("expiryTime", response.data.expiryTime);
-        sessionStorage.setItem("id", response.data.data._id);
-        navigate("/studentDash");
-      } else if (response.data.message === "Admin login success") {
-        sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("expiryTime", response.data.expiryTime);
-        sessionStorage.setItem("id", response.data.data._id);
-        navigate("/adminDash");
-      } else if (response.data.message === "Hod login success") {
-        sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("expiryTime", response.data.expiryTime);
-        sessionStorage.setItem("id", response.data.data._id);
-        navigate("/hodDash");
-      } else if (response.data.message === "Staff login success") {
-        sessionStorage.setItem("token", response.data.token);
-        sessionStorage.setItem("expiryTime", response.data.expiryTime);
-        sessionStorage.setItem("id", response.data.data._id);
-        sessionStorage.setItem("departmentId", response.data.data.department_id);
-        navigate("/staffDash");
-      } else {
-        alert(response.data.message);
-        setInput({ email: "", password: "" });
-      }
-    });
+    axios
+      .post("http://localhost:3001/admin/signin", input)
+      .then((response) => {
+        if (response.data.status === "success") {
+          if (response.data.message === "Student login success") {
+            sessionStorage.setItem("token", response.data.token);
+            sessionStorage.setItem("expiryTime", response.data.expiryTime);
+            sessionStorage.setItem("id", response.data.data._id);
+            navigate("/studentDash");
+          } else if (response.data.message === "Admin login success") {
+            sessionStorage.setItem("token", response.data.token);
+            sessionStorage.setItem("expiryTime", response.data.expiryTime);
+            sessionStorage.setItem("id", response.data.data._id);
+            navigate("/adminDash");
+          } else if (response.data.message === "Hod login success") {
+            sessionStorage.setItem("token", response.data.token);
+            sessionStorage.setItem("expiryTime", response.data.expiryTime);
+            sessionStorage.setItem("id", response.data.data._id);
+            navigate("/hodDash");
+          } else if (response.data.message === "Staff login success") {
+            sessionStorage.setItem("token", response.data.token);
+            sessionStorage.setItem("expiryTime", response.data.expiryTime);
+            sessionStorage.setItem("id", response.data.data._id);
+            sessionStorage.setItem(
+              "departmentId",
+              response.data.data.department_id
+            );
+            navigate("/staffDash");
+          } else {
+            alert(response.data.message);
+            setInput({ email: "", password: "" });
+          }
+        }else{
+          alert(response.data.message)
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
   return (
     <div className="signin-container">
-      <div className="container-flex">
+      <div className="container">
         <div className="row">
           <div className="banner">
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">

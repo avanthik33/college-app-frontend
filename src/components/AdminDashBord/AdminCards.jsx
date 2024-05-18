@@ -1,19 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "./AdminCard.css";
 const AdminCards = (props) => {
   return (
-    <div>
-      <div className="card">
-        <div className="card-body" style={{ backgroundColor: "lightskyblue" }}>
-          <h5 className="card-title" style={{ fontFamily: "monospace" }}>
-            {props.heading}
-          </h5>
-          <Link
-            to={props.link}
-            className="btn btn-primary"
-            style={{ fontFamily: "cursive" }}
-          >
+    <div className="admin-card-container">
+      <div className="admin-card">
+        <div className="admin-card-body">
+          <h5 className="admin-card-title">{props.heading}</h5>
+          <Link to={props.link} className="btn btn-primary">
             Navigate
           </Link>
         </div>

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import StaffNavBar from "./StaffNavBar";
 import axios from "axios";
 import "../StaffDashBord/AddAttandance.css";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const AddAttendance = () => {
+  useTokenExpiry();
   const departmentId = sessionStorage.getItem("departmentId");
 
   // State variables
@@ -21,10 +23,17 @@ const AddAttendance = () => {
 
   const listCourses = () => {
     axios
-      .post("http://localhost:3001/course/viewCourseByDep", {
-        department_id: departmentId,
-      })
+      .post(
+        "http://localhost:3001/course/viewCourseByDep",
+        {
+          department_id: departmentId,
+        },
+        { headers: { token: sessionStorage.getItem("token") } }
+      )
       .then((response) => {
+        if (response.data.status === "error") {
+          console.log(response.data.message);
+        }
         setCourses(response.data.data);
       })
       .catch(() => {
@@ -38,8 +47,13 @@ const AddAttendance = () => {
 
   const fetchStudents = () => {
     axios
-      .post("http://localhost:3001/student/viewStudByCourse", input)
+      .post("http://localhost:3001/student/viewStudByCourse", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((res) => {
+        if (res.data.status === "error") {
+          console.log(res.data.message);
+        }
         setStudents(res.data.data);
         setStudentFetched(true);
       });
@@ -61,11 +75,15 @@ const AddAttendance = () => {
     };
 
     axios
-      .post("http://localhost:3001/absent/addAbsent", { absentees })
+      .post(
+        "http://localhost:3001/absent/addAbsent",
+        { absentees },
+        { headers: { token: sessionStorage.getItem("token") } }
+      )
       .then((response) => {
         if (response.data.status === "success") {
           alert("successfully marked attandance");
-          setPeriod("")
+          setPeriod("");
         } else {
           alert(response.data.message);
         }
@@ -78,7 +96,7 @@ const AddAttendance = () => {
   return (
     <div>
       <StaffNavBar />
-      <div className="container-flex">
+      <div className="container-fluid">
         <h1>Mark Attendance</h1>
         <div className="row">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import AdminNavBar from "./NavBar";
 import axios from "axios";
+import useTokenExpiry from "../../tokenExpireTime";
 
 const SearchStudent = () => {
+  useTokenExpiry();
+
   const [data, setData] = useState([]);
   const [input, setInput] = useState({
     name: "",
@@ -15,14 +18,20 @@ const SearchStudent = () => {
 
   const fetchData = () => {
     axios
-      .post("http://localhost:3001/student/searchStudentByName", input)
+      .post("http://localhost:3001/student/searchStudentByName", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((res) => {
+        if (res.data.status === "error") {
+          alert(res.data.message);
+        }
         setData(res.data.data);
+      })
+      .catch((error) => {
+        alert("Error fetching data Please try agiain later")
+        console.log(error.message);
       });
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const handleHide = () => {
     setHide(true);
@@ -36,7 +45,7 @@ const SearchStudent = () => {
   return (
     <div>
       <AdminNavBar />
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <label htmlFor="" className="form-label">

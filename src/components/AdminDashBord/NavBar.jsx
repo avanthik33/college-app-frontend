@@ -9,10 +9,11 @@ const AdminNavBar = () => {
   return (
     <div>
       <nav
-        className="navbar navbar-expand-lg navbar-light"
-        style={{ backgroundColor: "#e3f2fd" }}
+        class="navbar bg-dark border-bottom border-body navbar-expand-lg h-90"
+        data-bs-theme="dark"
+        // style={{ height: "80px" }}
       >
-        <div className="container">
+        <div class="container">
           <h2 className="navbar-brand">ABC COLLEGE</h2>
           <button
             className="navbar-toggler"
