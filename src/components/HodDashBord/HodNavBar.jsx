@@ -137,6 +137,29 @@ const HodNavBar = () => {
                   </li>
                 </ul>
               </li>
+              <li class="nav-item dropdown">
+                <Link
+                  class="nav-link dropdown-toggle"
+                  to="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Semester
+                </Link>
+                <ul class="dropdown-menu">
+                  <li>
+                    <Link class="dropdown-item" to="/addSemester">
+                      Add Semester
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item" to="/viewSemester">
+                      View Semester
+                    </Link>
+                  </li>
+                </ul>
+              </li>
 
               <li className="nav-item">
                 <Link className="nav-link" onClick={handleLogout} to="/">

@@ -34,6 +34,8 @@ import AddAttandance from "./components/StaffDashBord/AddAttandance";
 import ViewAttandance from "./components/StaffDashBord/ViewAttandance";
 import StudentProfile from "./components/StudentDashBord/StudentProfile";
 import StudentAttandance from "./components/StudentDashBord/StudentAttandance";
+import AddSemester from "./components/HodDashBord/AddSemester";
+import ViewSemester from "./components/HodDashBord/ViewSemester";
 
 function App() {
   return (
@@ -74,6 +76,8 @@ function App() {
           <Route path="/viewAttandance" element={<ViewAttandance />} />
           <Route path="/studentProfile" element={<StudentProfile />} />
           <Route path="/studentAttandance" element={<StudentAttandance />} />
+          <Route path="/addSemester" element={<AddSemester />} />
+          <Route path="/viewSemester" element={<ViewSemester />} />
         </Routes>
       </BrowserRouter>
     </div>
