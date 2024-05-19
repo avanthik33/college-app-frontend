@@ -16,9 +16,6 @@ import AddCourse from "./components/AdminDashBord/AddCourse";
 import ViewDepartments from "./components/AdminDashBord/ViewDepartments";
 import ViewHod from "./components/AdminDashBord/ViewHod";
 import SearchHod from "./components/AdminDashBord/SearchHod";
-import ViewStaff from "./components/AdminDashBord/ViewStaff";
-import SearchStaff from "./components/AdminDashBord/SearchStaff";
-import ViewCourse from "./components/AdminDashBord/ViewCourse";
 import SearchStudent from "./components/AdminDashBord/SearchStudent";
 import HodProfile from "./components/HodDashBord/HodProfile";
 import ViewStaffAdmin from "./components/AdminDashBord/ViewStaffAdmin";
@@ -36,48 +33,95 @@ import StudentProfile from "./components/StudentDashBord/StudentProfile";
 import StudentAttandance from "./components/StudentDashBord/StudentAttandance";
 import AddSemester from "./components/HodDashBord/AddSemester";
 import ViewSemester from "./components/HodDashBord/ViewSemester";
+import Error from "./components/Error";
+import Admin from "./Admin";
+import Hod from "./Hod";
+import Staff from "./Staff";
+import Student from "./Student";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
+          <Route path="*" element={<Error />} />
+
           <Route path="/" element={<SignIn />} />
-          <Route path="/studentDash" element={<StudentDash />} />
-          <Route path="/adminDash" element={<AdminDash />} />
-          <Route path="/hodDash" element={<HodDash />} />
-          <Route path="/addDep" element={<AddDepartment />} />
-          <Route path="/addHod" element={<AddHod />} />
-          <Route path="/addStudent" element={<AddStudent />} />
-          <Route path="/addStaff" element={<AddStaff />} />
-          <Route path="/staffDash" element={<StaffDash />} />
-          <Route path="/addSub" element={<AddSubject />} />
-          <Route path="/subAllocation" element={<SubjectAllocation />} />
-          <Route path="/adminProfile" element={<AdminProfile />} />
-          <Route path="/addCourse" element={<AddCourse />} />
-          <Route path="/viewDepartments" element={<ViewDepartments />} />
-          <Route path="/viewHod" element={<ViewHod />} />
-          <Route path="/searchHod" element={<SearchHod />} />
-          <Route path="/viewStaff" element={<ViewStaff />} />
-          <Route path="/searchStaff" element={<SearchStaff />} />
-          <Route path="/viewCourse" element={<ViewCourse />} />
-          <Route path="/searchStudent" element={<SearchStudent />} />
-          <Route path="/hodProfile" element={<HodProfile />} />
-          <Route path="/viewStaffAdmin" element={<ViewStaffAdmin />} />
-          <Route path="/viewStaffHod" element={<ViewStaffHod />} />
-          <Route path="/searchStaffHod" element={<SearchStaffHod />} />
-          <Route path="/searchStaffAdmin" element={<SearchStaffAdmin />} />
-          <Route path="/viewAllocation" element={<ViewSubjectAllocation />} />
-          <Route path="/viewCourseAdmin" element={<ViewCourseAdmin />} />
-          <Route path="/viewCourseHod" element={<ViewCourseHod />} />
-          <Route path="/staffProfile" element={<StaffProfile />} />
-          <Route path="/viewStudentStaff" element={<ViewStudentsStaff />} />
-          <Route path="/addAttandance" element={<AddAttandance />} />
-          <Route path="/viewAttandance" element={<ViewAttandance />} />
-          <Route path="/studentProfile" element={<StudentProfile />} />
-          <Route path="/studentAttandance" element={<StudentAttandance />} />
-          <Route path="/addSemester" element={<AddSemester />} />
-          <Route path="/viewSemester" element={<ViewSemester />} />
+
+          {/* admin */}
+          <Route element={<Admin />}>
+            <Route path="/adminDash" element={<AdminDash />} exact />
+            <Route path="/adminProfile" element={<AdminProfile />} exact />
+            <Route path="/addDep" element={<AddDepartment />} exact />
+            <Route
+              path="/viewDepartments"
+              element={<ViewDepartments />}
+              exact
+            />
+            <Route path="/addHod" element={<AddHod />} exact />
+            <Route path="/viewHod" element={<ViewHod />} exact />
+            <Route path="/searchHod" element={<SearchHod />} exact />
+            <Route path="/viewStaffAdmin" element={<ViewStaffAdmin />} exact />
+            <Route
+              path="/searchStaffAdmin"
+              element={<SearchStaffAdmin exact />}
+            />
+            <Route
+              path="/viewCourseAdmin"
+              element={<ViewCourseAdmin />}
+              exact
+            />
+            <Route path="/searchStudent" element={<SearchStudent />} exact />
+          </Route>
+
+          {/* Hod */}
+          <Route element={<Hod />}>
+            <Route path="/hodDash" element={<HodDash />} exact />
+            <Route path="/hodProfile" element={<HodProfile />} exact />
+            <Route path="/addStaff" element={<AddStaff />} exact />
+            <Route path="/viewStaffHod" element={<ViewStaffHod />} exact />
+            <Route path="/searchStaffHod" element={<SearchStaffHod />} exact />
+            <Route path="/addSub" element={<AddSubject />} exact />
+            <Route
+              path="/subAllocation"
+              element={<SubjectAllocation />}
+              exact
+            />
+            <Route
+              path="/viewAllocation"
+              element={<ViewSubjectAllocation />}
+              exact
+            />
+            <Route path="/addCourse" element={<AddCourse />} exact />
+            <Route path="/viewCourseHod" element={<ViewCourseHod />} exact />
+            <Route path="/addSemester" element={<AddSemester />} exact />
+            <Route path="/viewSemester" element={<ViewSemester />} exact />
+          </Route>
+
+          {/* staff */}
+          <Route element={<Staff />}>
+            <Route path="/staffDash" element={<StaffDash />} exact />
+            <Route path="/staffProfile" element={<StaffProfile />} exact />
+            <Route path="/addStudent" element={<AddStudent />} exact />
+            <Route
+              path="/viewStudentStaff"
+              element={<ViewStudentsStaff />}
+              exact
+            />
+            <Route path="/addAttandance" element={<AddAttandance />} exact />
+            <Route path="/viewAttandance" element={<ViewAttandance />} exact />
+          </Route>
+
+          {/* student */}
+          <Route element={<Student />}>
+            <Route path="/studentDash" element={<StudentDash />} exact />
+            <Route path="/studentProfile" element={<StudentProfile />} exact />
+            <Route
+              path="/studentAttandance"
+              element={<StudentAttandance />}
+              exact
+            />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

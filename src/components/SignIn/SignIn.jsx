@@ -23,16 +23,20 @@ const SignIn = () => {
             sessionStorage.setItem("token", response.data.token);
             sessionStorage.setItem("expiryTime", response.data.expiryTime);
             sessionStorage.setItem("id", response.data.data._id);
+            sessionStorage.setItem("authenticated", "student");
             navigate("/studentDash");
           } else if (response.data.message === "Admin login success") {
             sessionStorage.setItem("token", response.data.token);
             sessionStorage.setItem("expiryTime", response.data.expiryTime);
             sessionStorage.setItem("id", response.data.data._id);
+            sessionStorage.setItem("authenticated", "admin");
             navigate("/adminDash");
           } else if (response.data.message === "Hod login success") {
             sessionStorage.setItem("token", response.data.token);
             sessionStorage.setItem("expiryTime", response.data.expiryTime);
             sessionStorage.setItem("id", response.data.data._id);
+            sessionStorage.setItem("authenticated", "hod");
+
             sessionStorage.setItem(
               "department_id",
               response.data.data.department_id
@@ -42,6 +46,8 @@ const SignIn = () => {
             sessionStorage.setItem("token", response.data.token);
             sessionStorage.setItem("expiryTime", response.data.expiryTime);
             sessionStorage.setItem("id", response.data.data._id);
+            sessionStorage.setItem("authenticated", "staff");
+
             sessionStorage.setItem(
               "departmentId",
               response.data.data.department_id

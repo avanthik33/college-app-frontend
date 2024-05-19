@@ -1,0 +1,61 @@
+/* Center the error page with a subtle background */
+.error-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+background: linear-gradient(135deg, #4a90e2 25%, #dcdde1 100%);
+  color: #500c11;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Style the error container with a shadow and rounded corners */
+.error-container {
+  text-align: center;
+  background-color: #fff;
+  padding: 40px 60px;
+  border: 1px solid #f5c6cb;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Resize and center the error image */
+.error-image {
+  width: 300px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Style the error title */
+.error-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Style the error message */
+.error-message {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Style the button with rounded corners and a smooth transition */
+.error-button {
+  background-color: #70020d;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Add hover effect to the button */
+.error-button:hover {
+  background-color: #0a4f29;
+  transform: translateY(-2px);
+}
