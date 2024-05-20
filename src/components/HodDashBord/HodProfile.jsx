@@ -20,7 +20,7 @@ const HodProfile = () => {
   const id = sessionStorage.getItem("id");
   const fetchData = (id) => {
     axios
-      .get(`http://localhost:3001/hod/view/${id}`, {
+      .get(`https://college-app-backend.onrender.com/hod/view/${id}`, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -45,7 +45,7 @@ const HodProfile = () => {
 
   const handleUpdateProfile = () => {
     axios
-      .put(`http://localhost:3001/hod/profile/${id}`, input, {
+      .put(`https://college-app-backend.onrender.com/hod/profile/${id}`, input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {

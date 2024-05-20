@@ -12,7 +12,7 @@ const StudentAttandance = () => {
   const fetchData = () => {
     axios
       .post(
-        "http://localhost:3001/absent/viewAbsent",
+        "https://college-app-backend.onrender.com/absent/viewAbsent",
         { id: studentId },
         { headers: { token: sessionStorage.getItem("token") } }
       )
