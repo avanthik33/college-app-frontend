@@ -23,7 +23,7 @@ const AddStaff = () => {
   const fetchHodDep = () => {
     try {
       axios
-        .get(`http://localhost:3001/hod/view/${sessionStorage.getItem("id")}`, {
+        .get(`https://college-app-backend.onrender.com/hod/view/${sessionStorage.getItem("id")}`, {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
@@ -43,7 +43,7 @@ const AddStaff = () => {
   const fetchDepartment = () => {
     try {
       axios
-        .get("http://localhost:3001/dep/viewAll", {
+        .get("https://college-app-backend.onrender.com/dep/viewAll", {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
@@ -80,7 +80,7 @@ const AddStaff = () => {
 
   const submitHandler = () => {
     axios
-      .post("http://localhost:3001/staff/addStaff", input, {
+      .post("https://college-app-backend.onrender.com/staff/addStaff", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {

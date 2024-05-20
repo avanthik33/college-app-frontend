@@ -17,7 +17,7 @@ const AddSemester = () => {
   const fetchCourseByDep = () => {
     axios
       .post(
-        "http://localhost:3001/course/viewCourseByDep",
+        "https://college-app-backend.onrender.com/course/viewCourseByDep",
         {
           department_id: sessionStorage.getItem("department_id"),
         },
@@ -35,7 +35,7 @@ const AddSemester = () => {
   const fetchStudentsByCourse = (courseId) => {
     axios
       .post(
-        "http://localhost:3001/student/viewStudByCourse",
+        "https://college-app-backend.onrender.com/student/viewStudByCourse",
         { course_id: courseId },
         { headers: { token: sessionStorage.getItem("token") } }
       )
@@ -93,7 +93,7 @@ const AddSemester = () => {
     setSubjects([]);
     axios
       .post(
-        "http://localhost:3001/subject/viewSubByCourse",
+        "https://college-app-backend.onrender.com/subject/viewSubByCourse",
         { course_id: courseId },
         {
           headers: { token: sessionStorage.getItem("token") },
@@ -117,7 +117,7 @@ const AddSemester = () => {
 
   const handleSubmit = () => {
     axios
-      .post("http://localhost:3001/semester/addSemester", input, {
+      .post("https://college-app-backend.onrender.com/semester/addSemester", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((res) => {

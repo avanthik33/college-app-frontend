@@ -14,7 +14,7 @@ const AdminProfile = () => {
 
   const fetchData = (id) => {
     axios
-      .get(`http://localhost:3001/admin/profile/${id}`, {
+      .get(`https://college-app-backend.onrender.com/admin/profile/${id}`, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -39,7 +39,7 @@ const AdminProfile = () => {
 
   const handleUpdateProfile = () => {
     axios
-      .put(`http://localhost:3001/admin/update/${id}`, input, {
+      .put(`https://college-app-backend.onrender.com/admin/update/${id}`, input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {

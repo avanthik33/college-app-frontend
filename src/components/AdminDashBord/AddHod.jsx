@@ -22,7 +22,7 @@ const AddHod = () => {
   };
   const submitHandler = () => {
     axios
-      .post("http://localhost:3001/hod/addHod", input, {
+      .post("https://college-app-backend.onrender.com/hod/addHod", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -48,7 +48,7 @@ const AddHod = () => {
       });
   };
   useEffect(() => {
-    fetch("http://localhost:3001/dep/viewAll", {
+    fetch("https://college-app-backend.onrender.com/dep/viewAll", {
       headers: { token: sessionStorage.getItem("token") },
     })
       .then((response) => response.json())

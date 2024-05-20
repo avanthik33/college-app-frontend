@@ -16,7 +16,7 @@ const SignIn = () => {
 
   const submitHandle = () => {
     axios
-      .post("http://localhost:3001/admin/signin", input)
+      .post("https://college-app-backend.onrender.com/admin/signin", input)
       .then((response) => {
         if (response.data.status === "success") {
           if (response.data.message === "Student login success") {
