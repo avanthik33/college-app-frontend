@@ -16,7 +16,7 @@ const AddDepartment = () => {
   };
   const submitHandle = () => {
     axios
-      .post("http://localhost:3001/dep/addDep", input, {
+      .post("https://college-app-backend.onrender.com/dep/addDep", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((resp) => {

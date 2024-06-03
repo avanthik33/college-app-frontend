@@ -19,7 +19,7 @@ const SearchStaff = () => {
   const handleSearch = () => {
     try {
       axios
-        .post("http://localhost:3001/staff/search", input, {
+        .post("https://college-app-backend.onrender.com/staff/search", input, {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {

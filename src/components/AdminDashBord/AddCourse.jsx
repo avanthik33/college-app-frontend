@@ -19,7 +19,7 @@ const AddCourse = () => {
 
   const handleSubmit = () => {
     axios
-      .post("http://localhost:3001/course/add", input, {
+      .post("https://college-app-backend.onrender.com/course/add", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -41,7 +41,7 @@ const AddCourse = () => {
 
   const fetchDepartement = () => {
     axios
-      .get("http://localhost:3001/dep/viewAll", {
+      .get("https://college-app-backend.onrender.com/dep/viewAll", {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {

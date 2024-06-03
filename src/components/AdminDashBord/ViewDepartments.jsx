@@ -18,7 +18,7 @@ const ViewDepartments = () => {
   const fetchDepartment = () => {
     try {
       axios
-        .get("http://localhost:3001/dep/viewAll", {
+        .get("https://college-app-backend.onrender.com/dep/viewAll", {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
@@ -40,7 +40,7 @@ const ViewDepartments = () => {
   const handleDeleteDepartment = (id) => {
     try {
       axios
-        .delete(`http://localhost:3001/dep/delete/${id}`, {
+        .delete(`https://college-app-backend.onrender.com/dep/delete/${id}`, {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
@@ -68,7 +68,7 @@ const ViewDepartments = () => {
   const handleUpdateDepartment = () => {
     try {
       axios
-        .put(`http://localhost:3001/dep/edit/${depId}`, input, {
+        .put(`https://college-app-backend.onrender.com/dep/edit/${depId}`, input, {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {

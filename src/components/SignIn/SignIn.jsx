@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
+import { MDBSpinner } from "mdb-react-ui-kit";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -14,56 +15,65 @@ const SignIn = () => {
     setInput({ ...input, [event.target.name]: event.target.value });
   };
 
-  const submitHandle = () => {
-    axios
-      .post("http://localhost:3001/admin/signin", input)
-      .then((response) => {
-        if (response.data.status === "success") {
-          if (response.data.message === "Student login success") {
-            sessionStorage.setItem("token", response.data.token);
-            sessionStorage.setItem("expiryTime", response.data.expiryTime);
-            sessionStorage.setItem("id", response.data.data._id);
-            sessionStorage.setItem("authenticated", "student");
-            navigate("/studentDash");
-          } else if (response.data.message === "Admin login success") {
-            sessionStorage.setItem("token", response.data.token);
-            sessionStorage.setItem("expiryTime", response.data.expiryTime);
-            sessionStorage.setItem("id", response.data.data._id);
-            sessionStorage.setItem("authenticated", "admin");
-            navigate("/adminDash");
-          } else if (response.data.message === "Hod login success") {
-            sessionStorage.setItem("token", response.data.token);
-            sessionStorage.setItem("expiryTime", response.data.expiryTime);
-            sessionStorage.setItem("id", response.data.data._id);
-            sessionStorage.setItem("authenticated", "hod");
+  const [loading, setLoading] = useState(false);
 
-            sessionStorage.setItem(
-              "department_id",
-              response.data.data.department_id
-            );
-            navigate("/hodDash");
-          } else if (response.data.message === "Staff login success") {
-            sessionStorage.setItem("token", response.data.token);
-            sessionStorage.setItem("expiryTime", response.data.expiryTime);
-            sessionStorage.setItem("id", response.data.data._id);
-            sessionStorage.setItem("authenticated", "staff");
+  const submitHandle = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await axios
+        .post("https://college-app-backend.onrender.com/admin/signin", input)
+        .then((response) => {
+          if (response.data.status === "success") {
+            if (response.data.message === "Student login success") {
+              sessionStorage.setItem("token", response.data.token);
+              sessionStorage.setItem("expiryTime", response.data.expiryTime);
+              sessionStorage.setItem("id", response.data.data._id);
+              sessionStorage.setItem("authenticated", "student");
+              navigate("/studentDash");
+            } else if (response.data.message === "Admin login success") {
+              sessionStorage.setItem("token", response.data.token);
+              sessionStorage.setItem("expiryTime", response.data.expiryTime);
+              sessionStorage.setItem("id", response.data.data._id);
+              sessionStorage.setItem("authenticated", "admin");
+              navigate("/adminDash");
+            } else if (response.data.message === "Hod login success") {
+              sessionStorage.setItem("token", response.data.token);
+              sessionStorage.setItem("expiryTime", response.data.expiryTime);
+              sessionStorage.setItem("id", response.data.data._id);
+              sessionStorage.setItem("authenticated", "hod");
 
-            sessionStorage.setItem(
-              "departmentId",
-              response.data.data.department_id
-            );
-            navigate("/staffDash");
+              sessionStorage.setItem(
+                "department_id",
+                response.data.data.department_id
+              );
+              navigate("/hodDash");
+            } else if (response.data.message === "Staff login success") {
+              sessionStorage.setItem("token", response.data.token);
+              sessionStorage.setItem("expiryTime", response.data.expiryTime);
+              sessionStorage.setItem("id", response.data.data._id);
+              sessionStorage.setItem("authenticated", "staff");
+
+              sessionStorage.setItem(
+                "departmentId",
+                response.data.data.department_id
+              );
+              navigate("/staffDash");
+            } else {
+              alert(response.data.message);
+              setInput({ email: "", password: "" });
+            }
           } else {
             alert(response.data.message);
-            setInput({ email: "", password: "" });
           }
-        } else {
-          alert(response.data.message);
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div className="signin-container">
@@ -92,40 +102,48 @@ const SignIn = () => {
           </div>
           <div className="col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
             <div className="row g-3">
-              <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                <label htmlFor="email" className="form-label">
-                  Email
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={input.email}
-                  name="email"
-                  onChange={inputHandle}
-                  placeholder="Email"
-                  autoFocus
-                  required
-                />
-              </div>
-              <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  onChange={inputHandle}
-                  value={input.password}
-                  name="password"
-                  placeholder="Password"
-                  required
-                />
-              </div>
-              <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                <button className="btn btn-success" onClick={submitHandle}>
-                  SignIn
-                </button>
-              </div>
+              <form onSubmit={submitHandle}>
+                <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                  <label htmlFor="email" className="form-label">
+                    Email
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={input.email}
+                    name="email"
+                    onChange={inputHandle}
+                    placeholder="Email"
+                    autoFocus
+                    required
+                  />
+                </div>
+                <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                  <label htmlFor="password" className="form-label">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    onChange={inputHandle}
+                    value={input.password}
+                    name="password"
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+                <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                  <button className="btn btn-success" type="submit">
+                    {loading ? (
+                      <MDBSpinner role="status">
+                        <span className="visually-hidden">Loading...</span>
+                      </MDBSpinner>
+                    ) : (
+                      "SIGNIN"
+                    )}
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
