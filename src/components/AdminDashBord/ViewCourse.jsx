@@ -11,7 +11,7 @@ const ViewCourse = () => {
   const fetchCourse = () => {
     try {
       axios
-        .get("https://college-app-backend.onrender.com/course/viewall", {
+        .get("http://localhost:3001/course/viewall", {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {

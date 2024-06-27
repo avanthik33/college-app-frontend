@@ -27,7 +27,7 @@ const AddStudent = () => {
   }, []);
   const fetchCourses = () => {
     axios
-      .get("https://college-app-backend.onrender.com/dep/viewAll", {
+      .get("http://localhost:3001/dep/viewAll", {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -43,7 +43,7 @@ const AddStudent = () => {
       });
 
     axios
-      .get("https://college-app-backend.onrender.com/course/viewall", {
+      .get("http://localhost:3001/course/viewall", {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -71,7 +71,7 @@ const AddStudent = () => {
 
   const submitHandler = () => {
     axios
-      .post("https://college-app-backend.onrender.com/student/addStudent", input, {
+      .post("http://localhost:3001/student/addStudent", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {

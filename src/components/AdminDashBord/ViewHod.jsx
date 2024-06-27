@@ -13,7 +13,7 @@ const ViewHod = () => {
   const fetchHodDetails = () => {
     try {
       axios
-        .get("https://college-app-backend.onrender.com/hod/viewAll", {
+        .get("http://localhost:3001/hod/viewAll", {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {

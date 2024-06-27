@@ -22,7 +22,7 @@ const SignIn = () => {
     setLoading(true);
     try {
       await axios
-        .post("https://college-app-backend.onrender.com/admin/signin", input)
+        .post("http://localhost:3001/admin/signin", input)
         .then((response) => {
           if (response.data.status === "success") {
             if (response.data.message === "Student login success") {
@@ -53,7 +53,6 @@ const SignIn = () => {
               sessionStorage.setItem("expiryTime", response.data.expiryTime);
               sessionStorage.setItem("id", response.data.data._id);
               sessionStorage.setItem("authenticated", "staff");
-
               sessionStorage.setItem(
                 "departmentId",
                 response.data.data.department_id

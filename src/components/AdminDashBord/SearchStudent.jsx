@@ -18,7 +18,7 @@ const SearchStudent = () => {
 
   const fetchData = () => {
     axios
-      .post("https://college-app-backend.onrender.com/student/searchStudentByName", input, {
+      .post("http://localhost:3001/student/searchStudentByName", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((res) => {

@@ -13,7 +13,7 @@ const AdminDash = () => {
 
   const fetchTotalHods = () => {
     axios
-      .get("https://college-app-backend.onrender.com/hod/totalHods", {
+      .get("http://localhost:3001/hod/totalHods", {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((res) => {
@@ -26,7 +26,7 @@ const AdminDash = () => {
 
   const fetchTotalStudents = () => {
     axios
-      .get("https://college-app-backend.onrender.com/student/totalStudents", {
+      .get("http://localhost:3001/student/totalStudents", {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((res) => {
@@ -38,7 +38,7 @@ const AdminDash = () => {
   };
   const fetchTotalStaffs = () => {
     axios
-      .get("https://college-app-backend.onrender.com/staff/totalStaffs", {
+      .get("http://localhost:3001/staff/totalStaffs", {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((res) => {
