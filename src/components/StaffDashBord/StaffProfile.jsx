@@ -19,7 +19,7 @@ const StaffProfile = () => {
   const id = sessionStorage.getItem("id");
   const fetchData = (id) => {
     axios
-      .get(`http://localhost:3001/staff/profile/${id}`, {
+      .get(`https://campus-9pqa.onrender.com/staff/profile/${id}`, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -44,7 +44,7 @@ const StaffProfile = () => {
 
   const handleUpdateProfile = () => {
     axios
-      .put(`http://localhost:3001/staff/update/${id}`, input, {
+      .put(`https://campus-9pqa.onrender.com/staff/update/${id}`, input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {

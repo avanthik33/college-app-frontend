@@ -29,7 +29,7 @@ const StudentProfile = () => {
   const id = sessionStorage.getItem("id");
   const fetchData = () => {
     axios
-      .post(`http://localhost:3001/student/viewStudent/${id}`)
+      .post(`https://campus-9pqa.onrender.com/student/viewStudent/${id}`)
       .then((res) => {
         setData(res.data.data);
       })
@@ -40,7 +40,7 @@ const StudentProfile = () => {
 
   const handleUpdateProfile = () => {
     axios
-      .put(`http://localhost:3001/student/profile/${id}`, input)
+      .put(`https://campus-9pqa.onrender.com/student/profile/${id}`, input)
       .then((response) => {
         alert(response.data.status);
         fetchData();

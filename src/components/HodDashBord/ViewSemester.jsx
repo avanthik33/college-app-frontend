@@ -11,7 +11,7 @@ const ViewSemester = () => {
   const fetchCourseByDep = () => {
     axios
       .post(
-        "http://localhost:3001/course/viewCourseByDep",
+        "https://campus-9pqa.onrender.com/course/viewCourseByDep",
         {
           department_id: sessionStorage.getItem("department_id"),
         },
@@ -39,7 +39,7 @@ const ViewSemester = () => {
 
   const fetchSemestersByCourse = () => {
     axios
-      .post("http://localhost:3001/semester/viewSemByCourse", input, {
+      .post("https://campus-9pqa.onrender.com/semester/viewSemByCourse", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((res) => {

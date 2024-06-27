@@ -8,7 +8,7 @@ const ViewCourseHod = () => {
   const fetchCourse = () => {
     axios
       .post(
-        "http://localhost:3001/course/viewCourseByDep",
+        "https://campus-9pqa.onrender.com/course/viewCourseByDep",
         { department_id: sessionStorage.getItem("department_id") },
         {
           headers: { token: sessionStorage.getItem("token") },

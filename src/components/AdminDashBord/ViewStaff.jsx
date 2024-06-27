@@ -11,7 +11,7 @@ const ViewStaff = () => {
   const fetchStaffDetails = () => {
     try {
       axios
-        .get("http://localhost:3001/staff/viewall", {
+        .get("https://campus-9pqa.onrender.com/staff/viewall", {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
@@ -31,7 +31,7 @@ const ViewStaff = () => {
   const handleDeleteStaff = (staffId) => {
     console.log(staffId)
     axios
-      .delete(`http://localhost:3001/staff/delete/${staffId}`)
+      .delete(`https://campus-9pqa.onrender.com/staff/delete/${staffId}`)
       .then((res) => {
         console.log(res.data.status);
         fetchStaffDetails();

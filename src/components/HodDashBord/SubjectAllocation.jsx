@@ -19,7 +19,7 @@ const SubjectAllocation = () => {
 
   const fetchDepartement = () => {
     axios
-      .get(`http://localhost:3001/hod/view/${hodId}`, {
+      .get(`https://campus-9pqa.onrender.com/hod/view/${hodId}`, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -41,7 +41,7 @@ const SubjectAllocation = () => {
 
   const fetchStaff = (departmentName) => {
     axios
-      .get("http://localhost:3001/staff/viewall", {
+      .get("https://campus-9pqa.onrender.com/staff/viewall", {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -60,7 +60,7 @@ const SubjectAllocation = () => {
   };
   const fetchSubject = (selectedDepartment) => {
     axios
-      .get("http://localhost:3001/subject/viewall", {
+      .get("https://campus-9pqa.onrender.com/subject/viewall", {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -85,7 +85,7 @@ const SubjectAllocation = () => {
 
   const handleSubmit = () => {
     axios
-      .post("http://localhost:3001/subAllocation/allocate", input, {
+      .post("https://campus-9pqa.onrender.com/subAllocation/allocate", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {

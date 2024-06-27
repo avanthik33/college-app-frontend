@@ -24,7 +24,7 @@ const AddAttendance = () => {
   const listCourses = () => {
     axios
       .post(
-        "http://localhost:3001/course/viewCourseByDep",
+        "https://campus-9pqa.onrender.com/course/viewCourseByDep",
         {
           department_id: departmentId,
         },
@@ -47,7 +47,7 @@ const AddAttendance = () => {
 
   const fetchStudents = () => {
     axios
-      .post("http://localhost:3001/student/viewStudByCourse", input, {
+      .post("https://campus-9pqa.onrender.com/student/viewStudByCourse", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((res) => {
@@ -79,7 +79,7 @@ const AddAttendance = () => {
 
     axios
       .post(
-        "http://localhost:3001/absent/addAbsent",
+        "https://campus-9pqa.onrender.com/absent/addAbsent",
         { absentees },
         { headers: { token: sessionStorage.getItem("token") } }
       )

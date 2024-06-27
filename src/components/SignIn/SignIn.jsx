@@ -22,7 +22,7 @@ const SignIn = () => {
     setLoading(true);
     try {
       await axios
-        .post("http://localhost:3001/admin/signin", input)
+        .post("https://campus-9pqa.onrender.com/admin/signin", input)
         .then((response) => {
           if (response.data.status === "success") {
             if (response.data.message === "Student login success") {

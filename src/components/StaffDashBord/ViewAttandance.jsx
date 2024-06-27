@@ -21,7 +21,7 @@ const ViewAttandance = () => {
 
   const searchByDate = () => {
     axios
-      .post("http://localhost:3001/absent/viewAbsentees", input, {
+      .post("https://campus-9pqa.onrender.com/absent/viewAbsentees", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((res) => {
@@ -46,7 +46,7 @@ const ViewAttandance = () => {
   const fetchCourses = () => {
     axios
       .post(
-        "http://localhost:3001/course/viewCourseByDep",
+        "https://campus-9pqa.onrender.com/course/viewCourseByDep",
         { department_id: departmentId },
         { headers: { token: sessionStorage.getItem("token") } }
       )

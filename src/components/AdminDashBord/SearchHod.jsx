@@ -20,7 +20,7 @@ const SearchHod = () => {
   const handleSearch = () => {
     try {
       axios
-        .post("http://localhost:3001/hod/search", input, {
+        .post("https://campus-9pqa.onrender.com/hod/search", input, {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {

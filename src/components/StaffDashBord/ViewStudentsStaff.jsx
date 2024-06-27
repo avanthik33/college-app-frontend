@@ -14,7 +14,7 @@ const ViewStudentsStaff = () => {
     // Accept departmentId as a parameter
     try {
       const response = await axios.post(
-        "http://localhost:3001/student/viewByDep",
+        "https://campus-9pqa.onrender.com/student/viewByDep",
         { departmentId }, // Use the passed departmentId
         {
           headers: {
@@ -34,7 +34,7 @@ const ViewStudentsStaff = () => {
   const fetchStaffData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/staff/profile/${sessionStorage.getItem("id")}`,
+        `https://campus-9pqa.onrender.com/staff/profile/${sessionStorage.getItem("id")}`,
         {
           headers: {
             token: sessionStorage.getItem("token"),

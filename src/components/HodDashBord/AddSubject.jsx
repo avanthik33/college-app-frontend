@@ -14,7 +14,7 @@ const AddSubject = () => {
   });
   let departmentName = "";
   useEffect(() => {
-    fetch("http://localhost:3001/course/viewall", {
+    fetch("https://campus-9pqa.onrender.com/course/viewall", {
       headers: { token: sessionStorage.getItem("token") },
     })
       .then((response) => response.json())
@@ -39,7 +39,7 @@ const AddSubject = () => {
 
   const handleSubmit = () => {
     axios
-      .post("http://localhost:3001/subject/addSub", input, {
+      .post("https://campus-9pqa.onrender.com/subject/addSub", input, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {
@@ -60,7 +60,7 @@ const AddSubject = () => {
 
   const fetchHodData = () => {
     axios
-      .get(`http://localhost:3001/hod/view/${sessionStorage.getItem("id")}`, {
+      .get(`https://campus-9pqa.onrender.com/hod/view/${sessionStorage.getItem("id")}`, {
         headers: { token: sessionStorage.getItem("token") },
       })
       .then((response) => {

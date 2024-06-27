@@ -11,7 +11,7 @@ const ViewSubjectAllocation = () => {
   const fetchData = () => {
     try {
       axios
-        .get("http://localhost:3001/subAllocation/viewall", {
+        .get("https://campus-9pqa.onrender.com/subAllocation/viewall", {
           headers: { token: sessionStorage.getItem("token") },
         })
         .then((response) => {
